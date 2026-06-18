@@ -156,8 +156,14 @@ viewHeader shared model =
 
         , nav [ classList [ ( "header-nav", True ), ( "is-open", model.isMobileMenuOpen ) ] ]
             [ div [ class "nav-left" ]
-                [ a [ Route.Path.href Route.Path.Goldfish , class "nav-link" ] [ text "Search" ]
-                , a [ Route.Path.href Route.Path.Goldfish_Notebook , class "nav-link" ] [ text "Notebook" ]
+                [ a [ Route.Path.href Route.Path.Goldfish
+                    , class "nav-link"
+                    , onClick ToggleMenu
+                    ] [ text "Search" ]
+                , a [ Route.Path.href Route.Path.Goldfish_Notebook
+                    , class "nav-link"
+                    , onClick ToggleMenu
+                    ] [ text "Notebook" ]
                 ]
             , div [ class "nav-right" ]
                 [ a [ href "#", class "nav-link" ] [ text "Settings" ]
