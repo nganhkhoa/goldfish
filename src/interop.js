@@ -234,8 +234,16 @@ const pushToCloud = async (app, db, fileId) => {
     const fileContent = new Blob([JSON.stringify(notebookData)], { type: 'application/json' });
 
     const form = new FormData();
-    // Include parents in metadata so it knows where to put the file
-    const metadata = { name: 'dictionary_backup.json', parents: ['appDataFolder'] };
+
+    // --- THE FIX IS HERE ---
+    const metadata = { name: 'dictionary_backup.json' };
+
+    // Only set the 'parents' folder if we are CREATING a new file
+    if (!fileId) {
+        metadata.parents = ['appDataFolder'];
+    }
+    // -----------------------
+
     form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
     form.append('file', fileContent);
 
@@ -249,14 +257,20 @@ const pushToCloud = async (app, db, fileId) => {
         body: form
     });
 
-    // Capture the ID if this was a brand new file (POST)
-    const result = await res.json();
-    const finalId = fileId || result.id; // Get the ID from the response if we just created it
+    if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`Upload failed: ${res.status} - ${errText}`);
+    }
 
-    // Now fetch metadata using the actual finalId
+    const result = await res.json();
+    const finalId = fileId || result.id;
+
     const metaRes = await fetch(`https://www.googleapis.com/drive/v3/files/${finalId}?fields=modifiedTime`, {
         headers: { Authorization: `Bearer ${accessToken}` }
     });
+
+    if (!metaRes.ok) throw new Error("Failed to fetch modifiedTime");
+
     const meta = await metaRes.json();
 
     localStorage.setItem('local_modified', new Date(meta.modifiedTime).getTime().toString());

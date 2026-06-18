@@ -1,4 +1,4 @@
-module Pages.Home_ exposing (Model, Msg, page)
+module Pages.Goldfish exposing (Model, Msg, page)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

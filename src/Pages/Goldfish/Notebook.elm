@@ -1,4 +1,4 @@
-module Pages.Notebook exposing (Model, Msg, page)
+module Pages.Goldfish.Notebook exposing (Model, Msg, page)
 
 import Html exposing (..)
 import Html.Attributes exposing (class, disabled)

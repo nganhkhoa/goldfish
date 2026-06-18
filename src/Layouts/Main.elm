@@ -9,6 +9,8 @@ import Route exposing (Route)
 import View exposing (View)
 
 import Ports
+import Route
+import Route.Path
 import Shared
 import Shared.Model
 import Shared.Msg
@@ -154,9 +156,8 @@ viewHeader shared model =
 
         , nav [ classList [ ( "header-nav", True ), ( "is-open", model.isMobileMenuOpen ) ] ]
             [ div [ class "nav-left" ]
-                [ a [ href "/", class "nav-link active" ] [ text "Search" ]
-                , a [ href "/reader", class "nav-link" ] [ text "Reader" ]
-                , a [ href "/notebook", class "nav-link" ] [ text "Notebook" ]
+                [ a [ Route.Path.href Route.Path.Goldfish , class "nav-link" ] [ text "Search" ]
+                , a [ Route.Path.href Route.Path.Goldfish_Notebook , class "nav-link" ] [ text "Notebook" ]
                 ]
             , div [ class "nav-right" ]
                 [ a [ href "#", class "nav-link" ] [ text "Settings" ]

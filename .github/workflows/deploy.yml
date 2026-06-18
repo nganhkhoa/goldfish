@@ -36,7 +36,12 @@ jobs:
       - name: Build Production Assets
         run: |
           npx elm-land build
-          cp -r goldfish dist/
+          cp -r goldfish/* dist/
+
+      - name: Fix absolute paths for GitHub Pages subpath
+        run: |
+          sed -i 's|src="/|src="./|g' dist/index.html
+          sed -i 's|href="/|href="./|g' dist/index.html
 
       # --- CRITICAL FIX FOR SINGLE PAGE APPS ON GITHUB PAGES ---
       # - name: Configure SPA Routing Fallback
