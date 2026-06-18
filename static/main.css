@@ -1,0 +1,1054 @@
+/* --- Desktop Header Layout --- */
+.site-header {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    position: relative;
+    font-family: sans-serif;
+}
+
+.header-brand h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.header-divider {
+    width: 1px;
+    height: 24px;
+    background-color: #e2e8f0;
+    margin: 0 1.5rem;
+}
+
+.header-nav {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #64748b;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #0f172a;
+}
+
+/* The active 'Search' button style from your image */
+.nav-link.active {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+}
+
+.nav-link.active:hover {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #0f172a;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.hamburger-btn {
+    display: none; /* Hidden by default on desktop */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #0f172a;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0.5rem;
+}
+
+/* --- Mobile Header Layout --- */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .header-divider {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: block;
+    }
+
+    .header-nav {
+        display: none; /* Hidden until toggled */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        flex-direction: column;
+        padding: 1.5rem;
+        border-bottom: 1px solid #e2e8f0;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 50;
+    }
+
+    /* Elm applies this class when model.isMobileMenuOpen == True */
+    .header-nav.is-open {
+        display: flex;
+    }
+
+    .nav-left, .nav-right {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1.25rem;
+    }
+
+    .nav-right {
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .user-avatar {
+        margin-top: 0.5rem;
+    }
+}
+
+
+
+
+/* --- Base Desktop Layout (Already in your file) --- */
+.search-layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 2rem auto;
+    gap: 24px;
+    padding: 0 20px;
+}
+
+/* --- 3-Column Layout --- */
+.search-layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 2rem auto;
+    gap: 24px;
+    padding: 0 20px;
+}
+
+.search-left-tab, .search-right-tab {
+    flex: 1;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    min-height: 400px;
+}
+
+.search-center-tab {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* --- Language Switch Buttons --- */
+.language-switch-group {
+    display: flex;
+    background-color: #f1f5f9;
+    padding: 0.25rem;
+    border-radius: 8px;
+}
+
+.lang-btn {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 500;
+    color: #64748b;
+    transition: all 0.2s;
+}
+
+.lang-btn.active {
+    background-color: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Search Bar --- */
+.search-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-input-group input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.search-input-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.search-input-group button {
+    padding: 0.75rem 1.5rem;
+    background-color: #0f172a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-input-group button:hover {
+    background-color: #1e293b;
+}
+
+/* --- Results & Cards --- */
+.search-results {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #94a3b8;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    border: 1px dashed #cbd5e1;
+}
+
+.result-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.result-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.card-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    color: #0f172a;
+}
+
+.card-description {
+    margin: 0 0 1rem 0;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-btn {
+    background: transparent;
+    border: 1px solid #cbd5e1;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+.icon-btn:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+/* --- NEW: Responsive Mobile & Tablet Layout --- */
+@media (max-width: 992px) {
+    .search-layout {
+        /* Change from row to column */
+        flex-direction: column; 
+    }
+
+    /* Force the sidebars to take full width instead of shrinking */
+    .search-left-tab, 
+    .search-right-tab, 
+    .search-center-tab {
+        flex: auto;
+        width: 100%;
+        min-height: auto; /* Remove the 400px min-height constraint for mobile */
+    }
+
+    /* UX Improvement: On mobile, the actual search bar and results 
+       should appear BEFORE the sidebars. 
+       Flex 'order' lets us rearrange the DOM visually.
+    */
+    .search-center-tab {
+        order: -1; 
+    }
+}
+
+/* --- Mobile tweaks for the Search Input Group --- */
+@media (max-width: 480px) {
+    .search-input-group {
+        flex-direction: column;
+    }
+    
+    .search-input-group button {
+        width: 100%;
+    }
+}
+
+/* --- Pagination Controls --- */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.pagination-btn {
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    color: #0f172a;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.pagination-btn:disabled {
+    background-color: #f8fafc;
+    color: #94a3b8;
+    cursor: not-allowed;
+    border-color: #e2e8f0;
+}
+
+.pagination-info {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+
+
+/* --- Pagination Controls --- */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.pagination-btn {
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    color: #0f172a;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.pagination-btn:disabled {
+    background-color: #f8fafc;
+    color: #94a3b8;
+    cursor: not-allowed;
+    border-color: #e2e8f0;
+}
+
+.pagination-info {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* --- Theming Variables --- */
+:root {
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --pill-bg: #f8fafc;
+    --pill-text: #475569;
+    --pill-border: #e2e8f0;
+    --btn-bg: #f1f5f9;
+    --btn-hover: #e2e8f0;
+    --heart-color: #f43f5e;
+    --accent-border: #cbd5e1;
+}
+
+/* --- Card Container --- */
+.flexible-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: system-ui, -apple-system, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.flexible-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Header & Save Button --- */
+.card-header {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 10;
+}
+
+.save-btn {
+    background: transparent;
+    border: none;
+    color: var(--heart-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.save-btn:hover {
+    background-color: rgba(244, 63, 94, 0.08);
+}
+
+/* --- Card Body (The AST Container) --- */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem; /* This guarantees perfect spacing between ALL blocks */
+}
+
+/* --- Typography Blocks --- */
+.block-main-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.2;
+    padding-right: 4rem; /* Prevents text from colliding with the absolute save button */
+}
+
+.block-sub-title {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: inline-block;
+    margin-right: 0.75rem;
+}
+
+.block-meaning {
+    font-size: 1.05rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Tags (Pills) --- */
+.block-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pill-tag {
+    background-color: var(--pill-bg);
+    border: 1px solid var(--pill-border);
+    color: var(--pill-text);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px; /* Perfect pill shape */
+}
+
+/* --- Action Buttons (e.g., Pronounce, Video) --- */
+.block-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.action-btn {
+    background-color: var(--btn-bg);
+    border: none;
+    color: var(--text-main);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--btn-hover);
+}
+
+/* --- Nested Dictionary Entries (For Japanese Schema) --- */
+.block-dict-entry {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.25rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--accent-border);
+}
+
+.dict-pos {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.dict-def {
+    font-size: 1rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 640px) {
+    .flexible-card {
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+
+    .block-main-title {
+        font-size: 1.75rem;
+    }
+
+    .block-sub-title {
+        font-size: 1rem;
+    }
+
+    /* Stack dictionary entries a bit tighter on mobile */
+    .block-dict-entry {
+        padding-left: 0.75rem;
+    }
+
+    .action-btn {
+        flex: 1 1 auto; /* Allow buttons to stretch and fill space on small screens */
+        text-align: center;
+    }
+}
+
+
+
+/* --- Notebook Layouts --- */
+.notebook-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #0f172a;
+}
+
+/* --- The Summary Packs (Image 1) --- */
+.pack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.pack-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pack-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.pack-count {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.3rem 0.8rem;
+    background: #f8fafc;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* --- The Flashcard Grid (Images 2 & 3) --- */
+.flashcard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.flashcard {
+    background-color: #dcfce7; /* The specific light green */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 180px;
+    transition: transform 0.1s;
+    border: 1px solid #bbf7d0;
+}
+
+.flashcard:active {
+    transform: scale(0.98);
+}
+
+.expand-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #ffffff;
+    border: none;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    color: #166534;
+    font-weight: bold;
+}
+
+.flashcard-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* 1. Wash out the background and border */
+.flashcard.is-remembered {
+    background-color: #f8fafc;
+    border-color: #e2e8f0;
+    opacity: 0.65;
+    transition: all 0.3s ease;
+}
+
+/* 2. Remove the hover "pop" effect so it feels inactive */
+.flashcard.is-remembered:hover {
+    transform: none;
+    opacity: 0.9; /* Bring opacity back up slightly on hover so buttons are clear */
+}
+
+/* 3. Turn the text gray */
+.flashcard.is-remembered .fc-main,
+.flashcard.is-remembered .fc-sub,
+.flashcard.is-remembered .fc-mean {
+    color: #94a3b8;
+}
+
+/* 4. Gray out the expand button */
+.flashcard.is-remembered .expand-btn {
+    color: #cbd5e1;
+}
+
+.fc-main { font-size: 2rem; color: #14532d; margin: 0; }
+.fc-sub { font-size: 1.2rem; color: #166534; margin: 0; }
+.fc-mean { font-size: 0.9rem; color: #166534; margin: 0; }
+
+/* --- Flashcard Bottom Actions --- */
+.flashcard-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.flashcard-actions button {
+    background: #ffffff;
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.action-chk { color: #6366f1; } /* Purple check */
+.action-tag { color: #f59e0b; } /* Orange tag */
+.action-del { color: #94a3b8; } /* Gray trash */
+
+.flashcard-actions button:hover {
+    background: #f1f5f9;
+}
+
+/* --- Expand Modal Overlay --- */
+.modal-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 500px;
+    /* We don't style the card here, we let FlexibleCard do it! */
+}
+
+/* --- Flashcard Button Hover State --- */
+.flashcard .flashcard-actions,
+.flashcard .expand-btn {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* Show buttons when the mouse hovers over the flashcard */
+.flashcard:hover .flashcard-actions,
+.flashcard:hover .expand-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ensure mobile devices always see the buttons since they can't hover */
+@media (hover: none) {
+    .flashcard .flashcard-actions,
+    .flashcard .expand-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* --- Action Button Styling --- */
+.flashcard-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    position: absolute; /* Lock to bottom */
+    bottom: 0;
+    right: 0;
+}
+
+.flashcard-actions button {
+    background: #ffffff;
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.action-chk { color: #94a3b8; } /* Default un-remembered color */
+.action-tag { color: #f59e0b; }
+.action-del { color: #f43f5e; }
+
+.flashcard-actions button:hover {
+    background: #f1f5f9;
+}
+
+/* --- The Level 2 'Remembered' State --- */
+/* When the memoryLevel == 2, the class 'remembered' is added */
+.flashcard-actions button.action-chk.remembered {
+    background-color: #22c55e; /* Vibrant Green */
+    color: #ffffff;
+}
+
+.flashcard-actions button.action-chk.remembered:hover {
+    background-color: #16a34a;
+}
+
+/* --- Navigation Buttons --- */
+.back-btn {
+    background: transparent;
+    border: none;
+    color: #64748b; /* A soft, muted slate gray */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    
+    /* Pull it slightly to the left so the text aligns with the grid below it */
+    margin-left: -0.5rem; 
+}
+
+.back-btn:hover {
+    background-color: #f1f5f9; /* Soft light gray background on hover */
+    color: #0f172a; /* Darken the text on hover */
+}
+
+.back-btn:active {
+    transform: scale(0.98);
+}
+
+/* --- Header Authentication Section --- */
+
+.auth-group-logged-in,
+.auth-group-logged-out {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Spacing between status, sync, and user icon */
+}
+
+.sync-status-text {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+/* --- Sync Button --- */
+.sync-btn {
+    background-color: #f8fafc;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sync-btn:hover:not(:disabled) {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    border-color: #cbd5e1;
+}
+
+/* When the app is syncing, wash it out so the user knows they can't click it */
+.sync-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- User Icon Button --- */
+.user-icon-btn {
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; /* Make it a perfect circle */
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    padding: 0;
+}
+
+.user-icon-btn:hover {
+    background-color: #e2e8f0;
+}
+
+.user-icon-btn:active {
+    transform: scale(0.95);
+}
+
+/* --- Google Sign-In Button --- */
+.google-signin-btn {
+    background-color: #ffffff;
+    color: #3c4043; /* Standard Google text color */
+    border: 1px solid #dadce0;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.google-signin-btn:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.google-signin-btn:active {
+    background-color: #e8eaed;
+}
+
+/* ==========================================================================
+   Database Setup / Installation Screen
+   ========================================================================== */
+
+/* --- Main Container --- */
+.setup-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* Make it look like a floating card */
+    background: #ffffff;
+    max-width: 480px;
+    margin: 4rem auto;
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Typography --- */
+.setup-screen h2 {
+    color: #0f172a;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.setup-screen p {
+    color: #64748b;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Emphasize the active parsing text */
+.setup-screen .progress-text {
+    color: #3b82f6; /* A clean, active blue */
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* --- The Install Button --- */
+.install-btn {
+    background-color: #3b82f6; /* Trustworthy primary blue */
+    color: #ffffff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+    transition: all 0.2s ease;
+}
+
+.install-btn:hover {
+    background-color: #2563eb;
+    box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.4);
+    transform: translateY(-1px);
+}
+
+.install-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px -1px rgba(59, 130, 246, 0.3);
+}
+
+/* --- The Pure CSS Spinner --- */
+.spinner {
+    width: 48px;
+    height: 48px;
+    
+    /* Create a light gray track */
+    border: 4px solid #f1f5f9;
+    
+    /* Color one edge of the border blue to create the spinning 'head' */
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    
+    /* Apply the infinite rotation animation */
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+/* Define the rotation keyframes */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
