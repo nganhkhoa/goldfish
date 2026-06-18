@@ -153,8 +153,36 @@ update msg model =
                     List.map
                         (\entry ->
                             if entry.notebookId == nbId then
-                                -- Cycle through 0, 1, 2
-                                { entry | flipState = modBy 3 (entry.flipState + 1) }
+                                let
+                                    -- Scan the AST layout to see if a valid SubTitle block exists
+                                    hasSubTitle =
+                                        List.any
+                                            (\block ->
+                                                case block of
+                                                    SubTitle text ->
+                                                        not (String.isEmpty (String.trim text))
+
+                                                    _ ->
+                                                        False
+                                            )
+                                            entry.ast.layout
+
+                                    -- Route the states based on the AST check
+                                    nextState =
+                                        case entry.flipState of
+                                            0 ->
+                                                -- If on Main Title: go to SubTitle if it exists, else skip to Meaning
+                                                if hasSubTitle then 1 else 2
+
+                                            1 ->
+                                                -- If on SubTitle: always go to Meaning next
+                                                2
+
+                                            _ ->
+                                                -- If on Meaning (2) or fallback: loop back to Main Title
+                                                0
+                                in
+                                { entry | flipState = nextState }
                             else
                                 entry
                         )
