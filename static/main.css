@@ -1,10 +1,19 @@
+body, html {
+    background-color: #0f172a; /* Deep slate to match the header */
+    color: #f8fafc; /* Default text color */
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+}
+
 /* --- Desktop Header Layout --- */
 .site-header {
     display: flex;
     align-items: center;
     padding: 0.75rem 2rem;
-    background-color: #ffffff;
-    border-bottom: 1px solid #e2e8f0;
+    background-color: #0f172a; /* Deep Slate Base */
+    border-bottom: 1px solid #1e293b;
     position: relative;
     font-family: sans-serif;
 }
@@ -12,14 +21,14 @@
 .header-brand h1 {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #0f172a;
+    color: #f8fafc; /* Crisp White/Slate */
     margin: 0;
 }
 
 .header-divider {
     width: 1px;
     height: 24px;
-    background-color: #e2e8f0;
+    background-color: #334155;
     margin: 0 1.5rem;
 }
 
@@ -38,34 +47,34 @@
 
 .nav-link {
     text-decoration: none;
-    color: #64748b;
+    color: #94a3b8; /* Muted slate for inactive links */
     font-size: 0.95rem;
     font-weight: 500;
     transition: color 0.2s;
 }
 
 .nav-link:hover {
-    color: #0f172a;
+    color: #f8fafc;
 }
 
-/* The active 'Search' button style from your image */
+/* The active 'Search' button style */
 .nav-link.active {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #f8fafc; /* Inverted for dark mode */
+    color: #0f172a;
     padding: 0.5rem 1.25rem;
     border-radius: 6px;
 }
 
 .nav-link.active:hover {
-    background-color: #1a1a1a;
-    color: #ffffff;
+    background-color: #cbd5e1;
+    color: #0f172a;
 }
 
 .user-avatar {
     width: 36px;
     height: 36px;
-    background-color: #0f172a;
-    color: #ffffff;
+    background-color: #f8fafc; /* Inverted */
+    color: #0f172a;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -76,11 +85,11 @@
 }
 
 .hamburger-btn {
-    display: none; /* Hidden by default on desktop */
+    display: none;
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: #0f172a;
+    color: #f8fafc;
     cursor: pointer;
     margin-left: auto;
     padding: 0.5rem;
@@ -101,20 +110,19 @@
     }
 
     .header-nav {
-        display: none; /* Hidden until toggled */
+        display: none;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        background-color: #ffffff;
+        background-color: #0f172a;
         flex-direction: column;
         padding: 1.5rem;
-        border-bottom: 1px solid #e2e8f0;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid #1e293b;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); /* Stronger shadow for dark mode */
         z-index: 50;
     }
 
-    /* Elm applies this class when model.isMobileMenuOpen == True */
     .header-nav.is-open {
         display: flex;
     }
@@ -129,24 +137,12 @@
     .nav-right {
         margin-top: 1.25rem;
         padding-top: 1.25rem;
-        border-top: 1px solid #e2e8f0;
+        border-top: 1px solid #1e293b;
     }
 
     .user-avatar {
         margin-top: 0.5rem;
     }
-}
-
-
-
-
-/* --- Base Desktop Layout (Already in your file) --- */
-.search-layout {
-    display: flex;
-    max-width: 1200px;
-    margin: 2rem auto;
-    gap: 24px;
-    padding: 0 20px;
 }
 
 /* --- 3-Column Layout --- */
@@ -160,10 +156,10 @@
 
 .search-left-tab, .search-right-tab {
     flex: 1;
-    background-color: #f8fafc;
+    background-color: #1e293b; /* Elevated surface color */
     border-radius: 8px;
     padding: 1.5rem;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #334155;
     min-height: 400px;
 }
 
@@ -177,9 +173,10 @@
 /* --- Language Switch Buttons --- */
 .language-switch-group {
     display: flex;
-    background-color: #f1f5f9;
+    background-color: #0f172a; /* Recessed background */
     padding: 0.25rem;
     border-radius: 8px;
+    border: 1px solid #1e293b;
 }
 
 .lang-btn {
@@ -190,14 +187,14 @@
     cursor: pointer;
     border-radius: 6px;
     font-weight: 500;
-    color: #64748b;
+    color: #94a3b8;
     transition: all 0.2s;
 }
 
 .lang-btn.active {
-    background-color: #ffffff;
-    color: #0f172a;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #334155;
+    color: #f8fafc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* --- Search Bar --- */
@@ -209,7 +206,9 @@
 .search-input-group input {
     flex: 1;
     padding: 0.75rem 1rem;
-    border: 1px solid #cbd5e1;
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
     border-radius: 8px;
     font-size: 1rem;
 }
@@ -217,13 +216,17 @@
 .search-input-group input:focus {
     outline: none;
     border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.search-input-group input::placeholder {
+    color: #64748b;
 }
 
 .search-input-group button {
     padding: 0.75rem 1.5rem;
-    background-color: #0f172a;
-    color: #ffffff;
+    background-color: #f8fafc; /* High contrast button */
+    color: #0f172a;
     border: none;
     border-radius: 8px;
     font-weight: bold;
@@ -231,7 +234,7 @@
 }
 
 .search-input-group button:hover {
-    background-color: #1e293b;
+    background-color: #cbd5e1;
 }
 
 /* --- Results & Cards --- */
@@ -245,34 +248,34 @@
     text-align: center;
     padding: 3rem;
     color: #94a3b8;
-    background-color: #f8fafc;
+    background-color: #1e293b;
     border-radius: 8px;
-    border: 1px dashed #cbd5e1;
+    border: 1px dashed #475569;
 }
 
 .result-card {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
+    background-color: #1e293b;
+    border: 1px solid #334155;
     border-radius: 8px;
     padding: 1.25rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .result-card:hover {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
     transform: translateY(-1px);
 }
 
 .card-title {
     margin: 0 0 0.5rem 0;
     font-size: 1.25rem;
-    color: #0f172a;
+    color: #f8fafc;
 }
 
 .card-description {
     margin: 0 0 1rem 0;
-    color: #475569;
+    color: #cbd5e1;
     line-height: 1.5;
 }
 
@@ -283,45 +286,38 @@
 
 .icon-btn {
     background: transparent;
-    border: 1px solid #cbd5e1;
+    border: 1px solid #475569;
     padding: 0.25rem 0.75rem;
     border-radius: 4px;
     cursor: pointer;
-    color: #64748b;
+    color: #94a3b8;
     font-size: 0.875rem;
 }
 
 .icon-btn:hover {
-    background-color: #f1f5f9;
-    color: #0f172a;
+    background-color: #334155;
+    color: #f8fafc;
 }
 
-/* --- NEW: Responsive Mobile & Tablet Layout --- */
+/* --- Responsive Mobile & Tablet Layout --- */
 @media (max-width: 992px) {
     .search-layout {
-        /* Change from row to column */
         flex-direction: column; 
     }
 
-    /* Force the sidebars to take full width instead of shrinking */
     .search-left-tab, 
     .search-right-tab, 
     .search-center-tab {
         flex: auto;
         width: 100%;
-        min-height: auto; /* Remove the 400px min-height constraint for mobile */
+        min-height: auto;
     }
 
-    /* UX Improvement: On mobile, the actual search bar and results 
-       should appear BEFORE the sidebars. 
-       Flex 'order' lets us rearrange the DOM visually.
-    */
     .search-center-tab {
         order: -1; 
     }
 }
 
-/* --- Mobile tweaks for the Search Input Group --- */
 @media (max-width: 480px) {
     .search-input-group {
         flex-direction: column;
@@ -340,93 +336,51 @@
     gap: 1rem;
     margin-top: 2rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #334155;
 }
 
 .pagination-btn {
     padding: 0.5rem 1rem;
-    background-color: #ffffff;
-    border: 1px solid #cbd5e1;
+    background-color: #1e293b;
+    border: 1px solid #475569;
     border-radius: 6px;
-    color: #0f172a;
+    color: #f8fafc;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .pagination-btn:hover:not(:disabled) {
-    background-color: #f1f5f9;
-    border-color: #94a3b8;
+    background-color: #334155;
+    border-color: #64748b;
 }
 
 .pagination-btn:disabled {
-    background-color: #f8fafc;
-    color: #94a3b8;
+    background-color: #0f172a;
+    color: #475569;
     cursor: not-allowed;
-    border-color: #e2e8f0;
+    border-color: #1e293b;
 }
 
 .pagination-info {
     font-size: 0.9rem;
-    color: #64748b;
-    font-weight: 500;
-}
-
-
-
-/* --- Pagination Controls --- */
-.pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #e2e8f0;
-}
-
-.pagination-btn {
-    padding: 0.5rem 1rem;
-    background-color: #ffffff;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    color: #0f172a;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.pagination-btn:hover:not(:disabled) {
-    background-color: #f1f5f9;
-    border-color: #94a3b8;
-}
-
-.pagination-btn:disabled {
-    background-color: #f8fafc;
     color: #94a3b8;
-    cursor: not-allowed;
-    border-color: #e2e8f0;
-}
-
-.pagination-info {
-    font-size: 0.9rem;
-    color: #64748b;
     font-weight: 500;
 }
 
 /* --- Theming Variables --- */
 :root {
-    --card-bg: #ffffff;
-    --card-border: #e2e8f0;
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    --pill-bg: #f8fafc;
-    --pill-text: #475569;
-    --pill-border: #e2e8f0;
-    --btn-bg: #f1f5f9;
-    --btn-hover: #e2e8f0;
-    --heart-color: #f43f5e;
-    --accent-border: #cbd5e1;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --pill-bg: #0f172a;
+    --pill-text: #cbd5e1;
+    --pill-border: #334155;
+    --btn-bg: #334155;
+    --btn-hover: #475569;
+    --heart-color: #fb7185; /* Lighter rose for dark mode contrast */
+    --accent-border: #475569;
 }
 
 /* --- Card Container --- */
@@ -436,7 +390,7 @@
     border-radius: 16px;
     padding: 1.5rem;
     position: relative;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     font-family: system-ui, -apple-system, sans-serif;
     width: 100%;
@@ -445,7 +399,7 @@
 
 .flexible-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
 }
 
 /* --- Header & Save Button --- */
@@ -472,14 +426,14 @@
 }
 
 .save-btn:hover {
-    background-color: rgba(244, 63, 94, 0.08);
+    background-color: rgba(251, 113, 133, 0.15); /* Adjusted hover tint */
 }
 
 /* --- Card Body (The AST Container) --- */
 .card-body {
     display: flex;
     flex-direction: column;
-    gap: 0.85rem; /* This guarantees perfect spacing between ALL blocks */
+    gap: 0.85rem;
 }
 
 /* --- Typography Blocks --- */
@@ -489,7 +443,7 @@
     color: var(--text-main);
     margin: 0;
     line-height: 1.2;
-    padding-right: 4rem; /* Prevents text from colliding with the absolute save button */
+    padding-right: 4rem;
 }
 
 .block-sub-title {
@@ -523,7 +477,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding: 0.25rem 0.75rem;
-    border-radius: 9999px; /* Perfect pill shape */
+    border-radius: 9999px;
 }
 
 /* --- Action Buttons (e.g., Pronounce, Video) --- */
@@ -550,7 +504,7 @@
     background-color: var(--btn-hover);
 }
 
-/* --- Nested Dictionary Entries (For Japanese Schema) --- */
+/* --- Nested Dictionary Entries --- */
 .block-dict-entry {
     display: flex;
     flex-direction: column;
@@ -574,8 +528,6 @@
     line-height: 1.5;
 }
 
-
-/* --- Responsive Adjustments --- */
 @media (max-width: 640px) {
     .flexible-card {
         padding: 1.25rem;
@@ -590,18 +542,15 @@
         font-size: 1rem;
     }
 
-    /* Stack dictionary entries a bit tighter on mobile */
     .block-dict-entry {
         padding-left: 0.75rem;
     }
 
     .action-btn {
-        flex: 1 1 auto; /* Allow buttons to stretch and fill space on small screens */
+        flex: 1 1 auto;
         text-align: center;
     }
 }
-
-
 
 /* --- Notebook Layouts --- */
 .notebook-container {
@@ -613,10 +562,10 @@
 .page-title {
     font-size: 2rem;
     margin-bottom: 2rem;
-    color: #0f172a;
+    color: #f8fafc;
 }
 
-/* --- The Summary Packs (Image 1) --- */
+/* --- The Summary Packs --- */
 .pack-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -624,32 +573,36 @@
 }
 
 .pack-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: #1e293b;
+    border: 1px solid #334155;
     border-radius: 12px;
     padding: 2.5rem 1.5rem;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .pack-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.4);
+}
+
+.pack-card h3 {
+    color: #f8fafc;
 }
 
 .pack-count {
     display: inline-block;
     margin-top: 1rem;
     padding: 0.3rem 0.8rem;
-    background: #f8fafc;
+    background: #0f172a;
     border-radius: 20px;
     font-size: 0.85rem;
-    color: #64748b;
+    color: #94a3b8;
 }
 
-/* --- The Flashcard Grid (Images 2 & 3) --- */
+/* --- The Flashcard Grid --- */
 .flashcard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -658,14 +611,14 @@
 }
 
 .flashcard {
-    background-color: #dcfce7; /* The specific light green */
+    background-color: #064e3b; /* Deep emerald for active dark cards */
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     position: relative;
     height: 180px;
     transition: transform 0.1s;
-    border: 1px solid #bbf7d0;
+    border: 1px solid #065f46;
 }
 
 .flashcard:active {
@@ -676,14 +629,18 @@
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    background: #ffffff;
+    background: transparent;
     border: none;
     border-radius: 4px;
     width: 24px;
     height: 24px;
     cursor: pointer;
-    color: #166534;
+    color: #a7f3d0;
     font-weight: bold;
+}
+
+.expand-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .flashcard-body {
@@ -698,35 +655,32 @@
     user-select: none;
 }
 
-/* 1. Wash out the background and border */
+/* Washed out background for remembered cards */
 .flashcard.is-remembered {
-    background-color: #f8fafc;
-    border-color: #e2e8f0;
+    background-color: #0f172a;
+    border-color: #1e293b;
     opacity: 0.65;
     transition: all 0.3s ease;
 }
 
-/* 2. Remove the hover "pop" effect so it feels inactive */
 .flashcard.is-remembered:hover {
     transform: none;
-    opacity: 0.9; /* Bring opacity back up slightly on hover so buttons are clear */
+    opacity: 0.9;
 }
 
-/* 3. Turn the text gray */
 .flashcard.is-remembered .fc-main,
 .flashcard.is-remembered .fc-sub,
 .flashcard.is-remembered .fc-mean {
-    color: #94a3b8;
+    color: #64748b;
 }
 
-/* 4. Gray out the expand button */
 .flashcard.is-remembered .expand-btn {
-    color: #cbd5e1;
+    color: #475569;
 }
 
-.fc-main { font-size: 2rem; color: #14532d; margin: 0; }
-.fc-sub { font-size: 1.2rem; color: #166534; margin: 0; }
-.fc-mean { font-size: 0.9rem; color: #166534; margin: 0; }
+.fc-main { font-size: 2rem; color: #d1fae5; margin: 0; }
+.fc-sub { font-size: 1.2rem; color: #a7f3d0; margin: 0; }
+.fc-mean { font-size: 0.9rem; color: #6ee7b7; margin: 0; }
 
 /* --- Flashcard Bottom Actions --- */
 .flashcard-actions {
@@ -734,32 +688,69 @@
     justify-content: flex-end;
     gap: 0.5rem;
     padding: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .flashcard-actions button {
-    background: #ffffff;
-    border: none;
+    background: #1e293b;
+    border: 1px solid #334155;
     border-radius: 6px;
     width: 32px;
     height: 32px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background 0.2s;
+    transition: background-color 0.2s, color 0.2s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-.action-chk { color: #6366f1; } /* Purple check */
-.action-tag { color: #f59e0b; } /* Orange tag */
-.action-del { color: #94a3b8; } /* Gray trash */
+.action-chk { color: #64748b; }
+.action-tag { color: #fbbf24; }
+.action-del { color: #fb7185; }
 
 .flashcard-actions button:hover {
-    background: #f1f5f9;
+    background: #334155;
+}
+
+/* Hover States */
+.flashcard .flashcard-actions,
+.flashcard .expand-btn {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.flashcard:hover .flashcard-actions,
+.flashcard:hover .expand-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (hover: none) {
+    .flashcard .flashcard-actions,
+    .flashcard .expand-btn {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Remembered Button State */
+.flashcard-actions button.action-chk.remembered {
+    background-color: #16a34a;
+    border-color: #15803d;
+    color: #ffffff;
+}
+
+.flashcard-actions button.action-chk.remembered:hover {
+    background-color: #15803d;
 }
 
 /* --- Expand Modal Overlay --- */
 .modal-backdrop {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.75); /* Darker backdrop */
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -769,80 +760,13 @@
 .modal-content {
     width: 100%;
     max-width: 500px;
-    /* We don't style the card here, we let FlexibleCard do it! */
-}
-
-/* --- Flashcard Button Hover State --- */
-.flashcard .flashcard-actions,
-.flashcard .expand-btn {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
-}
-
-/* Show buttons when the mouse hovers over the flashcard */
-.flashcard:hover .flashcard-actions,
-.flashcard:hover .expand-btn {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Ensure mobile devices always see the buttons since they can't hover */
-@media (hover: none) {
-    .flashcard .flashcard-actions,
-    .flashcard .expand-btn {
-        opacity: 1;
-        visibility: visible;
-    }
-}
-
-/* --- Action Button Styling --- */
-.flashcard-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    position: absolute; /* Lock to bottom */
-    bottom: 0;
-    right: 0;
-}
-
-.flashcard-actions button {
-    background: #ffffff;
-    border: none;
-    border-radius: 6px;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.2s, color 0.2s;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-
-.action-chk { color: #94a3b8; } /* Default un-remembered color */
-.action-tag { color: #f59e0b; }
-.action-del { color: #f43f5e; }
-
-.flashcard-actions button:hover {
-    background: #f1f5f9;
-}
-
-/* --- The Level 2 'Remembered' State --- */
-/* When the memoryLevel == 2, the class 'remembered' is added */
-.flashcard-actions button.action-chk.remembered {
-    background-color: #22c55e; /* Vibrant Green */
-    color: #ffffff;
-}
-
-.flashcard-actions button.action-chk.remembered:hover {
-    background-color: #16a34a;
 }
 
 /* --- Navigation Buttons --- */
 .back-btn {
     background: transparent;
     border: none;
-    color: #64748b; /* A soft, muted slate gray */
+    color: #94a3b8;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -852,14 +776,12 @@
     display: inline-flex;
     align-items: center;
     transition: background-color 0.2s ease, color 0.2s ease;
-    
-    /* Pull it slightly to the left so the text aligns with the grid below it */
     margin-left: -0.5rem; 
 }
 
 .back-btn:hover {
-    background-color: #f1f5f9; /* Soft light gray background on hover */
-    color: #0f172a; /* Darken the text on hover */
+    background-color: #1e293b;
+    color: #f8fafc;
 }
 
 .back-btn:active {
@@ -867,26 +789,25 @@
 }
 
 /* --- Header Authentication Section --- */
-
 .auth-group-logged-in,
 .auth-group-logged-out {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Spacing between status, sync, and user icon */
+    gap: 1rem;
 }
 
 .sync-status-text {
     font-size: 0.85rem;
-    color: #64748b;
+    color: #94a3b8;
     font-style: italic;
     white-space: nowrap;
 }
 
 /* --- Sync Button --- */
 .sync-btn {
-    background-color: #f8fafc;
-    color: #334155;
-    border: 1px solid #e2e8f0;
+    background-color: #1e293b;
+    color: #cbd5e1;
+    border: 1px solid #334155;
     padding: 0.4rem 0.8rem;
     border-radius: 8px;
     font-size: 0.9rem;
@@ -896,12 +817,11 @@
 }
 
 .sync-btn:hover:not(:disabled) {
-    background-color: #e2e8f0;
-    color: #0f172a;
-    border-color: #cbd5e1;
+    background-color: #334155;
+    color: #f8fafc;
+    border-color: #475569;
 }
 
-/* When the app is syncing, wash it out so the user knows they can't click it */
 .sync-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -909,11 +829,12 @@
 
 /* --- User Icon Button --- */
 .user-icon-btn {
-    background-color: #f1f5f9;
-    border: 1px solid #e2e8f0;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    color: #f8fafc;
     width: 36px;
     height: 36px;
-    border-radius: 50%; /* Make it a perfect circle */
+    border-radius: 50%;
     font-size: 1.1rem;
     display: flex;
     align-items: center;
@@ -924,7 +845,7 @@
 }
 
 .user-icon-btn:hover {
-    background-color: #e2e8f0;
+    background-color: #334155;
 }
 
 .user-icon-btn:active {
@@ -933,9 +854,9 @@
 
 /* --- Google Sign-In Button --- */
 .google-signin-btn {
-    background-color: #ffffff;
-    color: #3c4043; /* Standard Google text color */
-    border: 1px solid #dadce0;
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #475569;
     padding: 0.5rem 1rem;
     border-radius: 8px;
     font-size: 0.95rem;
@@ -943,17 +864,17 @@
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .google-signin-btn:hover {
-    background-color: #f8f9fa;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    background-color: #334155;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .google-signin-btn:active {
-    background-color: #e8eaed;
+    background-color: #0f172a;
 }
 
 /* ==========================================================================
@@ -968,19 +889,18 @@
     justify-content: center;
     text-align: center;
     
-    /* Make it look like a floating card */
-    background: #ffffff;
+    background: #1e293b;
     max-width: 480px;
     margin: 4rem auto;
     padding: 3rem 2.5rem;
     border-radius: 16px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #334155;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }
 
 /* --- Typography --- */
 .setup-screen h2 {
-    color: #0f172a;
+    color: #f8fafc;
     font-size: 1.5rem;
     font-weight: 700;
     margin-top: 0;
@@ -988,22 +908,21 @@
 }
 
 .setup-screen p {
-    color: #64748b;
+    color: #cbd5e1;
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 2rem;
 }
 
-/* Emphasize the active parsing text */
 .setup-screen .progress-text {
-    color: #3b82f6; /* A clean, active blue */
+    color: #60a5fa; /* Lighter active blue for contrast */
     font-weight: 600;
     margin-bottom: 2rem;
 }
 
 /* --- The Install Button --- */
 .install-btn {
-    background-color: #3b82f6; /* Trustworthy primary blue */
+    background-color: #3b82f6;
     color: #ffffff;
     border: none;
     padding: 0.8rem 1.5rem;
@@ -1011,44 +930,32 @@
     font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
     transition: all 0.2s ease;
 }
 
 .install-btn:hover {
-    background-color: #2563eb;
-    box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.4);
+    background-color: #60a5fa;
     transform: translateY(-1px);
 }
 
 .install-btn:active {
     transform: translateY(1px);
-    box-shadow: 0 2px 4px -1px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.4);
 }
 
 /* --- The Pure CSS Spinner --- */
 .spinner {
     width: 48px;
     height: 48px;
-    
-    /* Create a light gray track */
-    border: 4px solid #f1f5f9;
-    
-    /* Color one edge of the border blue to create the spinning 'head' */
+    border: 4px solid #334155;
     border-top: 4px solid #3b82f6;
     border-radius: 50%;
-    
-    /* Apply the infinite rotation animation */
     animation: spin 1s linear infinite;
     margin: 0 auto;
 }
 
-/* Define the rotation keyframes */
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
