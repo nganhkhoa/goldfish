@@ -1,5 +1,7 @@
 module Shared.Model exposing (Model, DbStatus(..))
 
+import NotebookEntry exposing (NotebookEntry)
+
 type DbStatus
     = Checking
     | NeedsInstall
@@ -11,4 +13,5 @@ type alias Model =
     , isSyncing : Bool
     , syncMessage : Maybe String
     , dbStatus : DbStatus
+    , activeLearnQueue : List NotebookEntry
     }

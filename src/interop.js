@@ -43,11 +43,35 @@ const getNotebookEntries = async () => {
       notebook_id: nb.id,
       memory_level: nb.memory_level,
       lang: nb.language,
-      dict_data: dictWord
+      dict_data: dictWord,
+      interval: nb.interval || 0,
+      easeFactor: nb.easeFactor || 2.5,
+      nextReview: nb.nextReview || 0
     };
   }));
   return joinedEntries.filter(entry => entry !== null);
 };
+
+async function updateCardStats(notebookIdStr, newLevel, interval, easeFactor, nextReview) {
+  // Use your existing DB connection setup here
+  const db = await dbPromise;
+  const tx = db.transaction(NOTEBOOK_STORE_NAME, 'readwrite');
+  const store = tx.objectStore(NOTEBOOK_STORE_NAME);
+
+  const numericId = parseInt(notebookIdStr, 10);
+  const record = await store.get(numericId);
+
+  if (record) {
+    record.memory_level = newLevel;
+    record.interval = interval;
+    record.easeFactor = easeFactor;
+    record.nextReview = nextReview;
+
+    await store.put(record);
+  }
+
+  await tx.done;
+}
 
 
 // Calculates the edit distance between two strings
@@ -568,6 +592,7 @@ export const onReady = ({ app }) => {
   // 3. Handle Mutations (Add, Remove, Update)
   if (app.ports.mutateNotebook) {
     app.ports.mutateNotebook.subscribe(async (mutation) => {
+      console.log("notebook change", mutation);
       try {
         switch (mutation.action) {
           case "ADD":
@@ -582,6 +607,15 @@ export const onReady = ({ app }) => {
             break;
           case "UPDATE_LEVEL":
             await updateMemoryLevel(mutation.notebookIdString, mutation.newLevel);
+            break;
+          case "UPDATE_STATS":
+            await updateCardStats(
+              mutation.notebookIdString,
+              mutation.newLevel,
+              mutation.interval,
+              mutation.easeFactor,
+              mutation.nextReview
+            );
             break;
         }
 

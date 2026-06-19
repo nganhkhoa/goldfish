@@ -18,6 +18,8 @@ import Schema exposing (CardAST, Block(..), decodeToAST)
 import Components.Card as Card
 import Components.Flashcard as Flashcard
 
+import NotebookEntry exposing (NotebookEntry)
+
 page : Shared.Model -> Route () -> Page Model Msg
 page shared route =
     Page.new
@@ -41,15 +43,7 @@ subscriptions model =
 
 type ViewState
     = NotebookList
-    | InsideNotebook String -- The language code (e.g., "ko")
-
-type alias NotebookEntry =
-    { notebookId : Int
-    , memoryLevel : Int
-    , language : String
-    , ast : CardAST
-    , flipState : Int -- 0 = Front, 1 = Middle, 2 = Back
-    }
+    | InsideNotebook String
 
 type alias Model =
     { viewState : ViewState
@@ -80,29 +74,6 @@ init _ =
     )
 
 
--- 3. THE DECODER (Bridging DB to AST)
-
-notebookEntryDecoder : Decode.Decoder NotebookEntry
-notebookEntryDecoder =
-    Decode.field "lang" Decode.string
-        |> Decode.andThen
-            (\lang ->
-                Decode.map4
-                    (\nbId memLevel ast _ ->
-                        { notebookId = nbId
-                        , memoryLevel = memLevel
-                        , language = lang
-                        , ast = ast
-                        , flipState = 0 -- Start on Front
-                        }
-                    )
-                    (Decode.field "notebook_id" Decode.int)
-                    (Decode.field "memory_level" Decode.int)
-                    (Decode.field "dict_data" (decodeToAST lang))
-                    (Decode.succeed ())
-            )
-
-
 -- 4. UPDATE PIPELINE
 
 update : Msg -> Model -> ( Model, Effect Msg )
@@ -120,7 +91,7 @@ update msg model =
                         Ok rawValues ->
                             List.filterMap
                                 (\rawItem ->
-                                    case Decode.decodeValue notebookEntryDecoder rawItem of
+                                    case Decode.decodeValue NotebookEntry.decoder rawItem of
                                         Ok entry ->
                                             Just entry
 
@@ -192,20 +163,12 @@ update msg model =
 
         RemoveEntry nbId ->
             let
-                -- 1. Optimistic UI: Instantly remove it from the grid
-                updatedEntries =
-                    List.filter (\entry -> entry.notebookId /= nbId) model.entries
-
-                -- 2. Send the strict mutation type to JS
-                payload =
-                    Encode.object
-                        [ ( "action", Encode.string "REMOVE" )
-                        , ( "notebookIdString", Encode.string (String.fromInt nbId) )
-                        ]
+                deleteCmd =
+                    NotebookEntry.Remove { notebookId = nbId }
+                        |> NotebookEntry.encodeMutation
+                        |> Ports.mutateNotebook
             in
-            ( { model | entries = updatedEntries }
-            , Effect.sendCmd (Ports.mutateNotebook payload)
-            )
+            ( model, Effect.sendCmd deleteCmd )
 
         MarkRemembered nbId ->
             let

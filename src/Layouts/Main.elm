@@ -164,6 +164,10 @@ viewHeader shared model =
                     , class "nav-link"
                     , onClick ToggleMenu
                     ] [ text "Notebook" ]
+                , a [ Route.Path.href Route.Path.Goldfish_Learn
+                    , class "nav-link"
+                    , onClick ToggleMenu
+                    ] [ text "Learn" ]
                 ]
             , div [ class "nav-right" ]
                 [ a [ href "#", class "nav-link" ] [ text "Settings" ]

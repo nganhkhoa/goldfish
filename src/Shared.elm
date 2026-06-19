@@ -48,6 +48,7 @@ init flagsResult route =
       , isSyncing = False
       , syncMessage = Nothing
       , dbStatus = Checking
+      , activeLearnQueue = []
       }
     , Effect.none
     )
@@ -91,6 +92,8 @@ update route msg model =
             , Effect.none
             )
 
+        SetLearnQueue newQueue ->
+            ( { model | activeLearnQueue = newQueue }, Effect.none )
 
 
 -- SUBSCRIPTIONS
