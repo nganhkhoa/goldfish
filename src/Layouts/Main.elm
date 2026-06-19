@@ -130,7 +130,7 @@ viewSetupScreen status =
                 , p [] [ text "Goldfish operates entirely offline after dictionaries are installed. Press the install button to get started." ]
                 , button
                     [ class "install-btn", onClick InstallClicked ]
-                    [ text "Download & Install (~5MB)" ]
+                    [ text "Download & Install (~10MB)" ]
                 ]
 
         Shared.Model.Installing progressText ->
