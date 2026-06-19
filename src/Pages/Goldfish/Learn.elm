@@ -21,6 +21,10 @@ type DeckFilter
     | Unlearned
     | AllCards
 
+type Game
+    = Flashcards
+    | Typing
+
 type alias Model =
     { entries : List NotebookEntry
     , selectedFilter : DeckFilter
@@ -31,7 +35,7 @@ type Msg
     = GotNotebookData Decode.Value
     | SetFilter DeckFilter
     | SetLanguage String
-    | LaunchGame1
+    | Launch Game
 
 page : Shared.Model -> Route () -> Page Model Msg
 page shared route =
@@ -99,7 +103,7 @@ update msg model =
         SetLanguage lang ->
             ( { model | selectedLanguage = Just lang }, Effect.none )
 
-        LaunchGame1 ->
+        Launch game ->
             let
                 filterParam =
                     case model.selectedFilter of
@@ -109,11 +113,15 @@ update msg model =
 
                 langParam =
                     Maybe.withDefault "all" model.selectedLanguage
+
+                path = case game of
+                    Flashcards -> Route.Path.Goldfish_Learn_Flashcards
+                    Typing -> Route.Path.Goldfish_Learn_Typing
             in
             ( model
             -- 3. Pass the user's intent to the Flashcard page via URL parameters!
             , Effect.pushRoute
-                { path = Route.Path.Goldfish_Learn_Flashcards
+                { path = path
                 , query = Dict.fromList
                     [ ( "filter", filterParam )
                     , ( "lang", langParam )
@@ -161,9 +169,13 @@ view model =
             , div [ class "setup-screen" ]
                 [ h2 [] [ text "3. Select a Game" ]
                 , div [ class "pack-grid" ]
-                    [ div [ class "pack-card", onClick LaunchGame1 ]
+                    [ div [ class "pack-card", onClick (Launch Flashcards) ]
                         [ h3 [] [ text "Classic Flashcards" ]
                         , p [ class "pack-count" ] [ text "Anki-style pure recall" ]
+                        ]
+                    , div [ class "pack-card", onClick (Launch Typing) ]
+                        [ h3 [] [ text "Typing Practice" ]
+                        , p [ class "pack-count" ] [ text "Strict recall & spelling" ]
                         ]
                     ]
                 ]
