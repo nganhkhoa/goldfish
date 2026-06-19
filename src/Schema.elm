@@ -38,14 +38,8 @@ koreanSchema =
                         baseLayout
 
             -- 3. Append the remaining blocks
-            finalLayout =
-                layoutWithHanja
-                    ++ [ InlineTags
-                           [ "TOPIK " ++ String.fromInt topik
-                           , "KOREAN"
-                           ]
-                       , Meaning meaning
-                       ]
+            tags = if topik == 0 then [] else [InlineTags [ "TOPIK " ++ String.fromInt topik ]]
+            finalLayout = layoutWithHanja ++ tags ++ [ Meaning meaning ]
         in
         { id = id
         , language = "ko"
@@ -62,7 +56,10 @@ koreanSchema =
 
 chineseSchema : Decode.Decoder CardAST
 chineseSchema =
-    Decode.map5 (\id simplified traditional pinyin isSaved ->
+    Decode.map7 (\id simplified traditional pinyin meaning hsk isSaved ->
+        let
+            hskstring = if hsk == 7 then "7-9" else String.fromInt hsk
+        in
         { id = id
         , language = "cn"
         , isSaved = isSaved
@@ -70,8 +67,8 @@ chineseSchema =
             [ SubTitle ("【" ++ traditional ++ "】")
             , SubTitle ("[ " ++ pinyin ++ " ]")
             , MainTitle simplified
-            , ActionRow [ "Pronounce", "Collocations" ]
-            , InlineTags [ "HSK" ]
+            , InlineTags [ "HSK " ++ hskstring ]
+            , Meaning meaning
             ]
         }
     )
@@ -79,6 +76,8 @@ chineseSchema =
         (Decode.field "simplified" Decode.string)
         (Decode.field "traditional" Decode.string)
         (Decode.field "pinyin" Decode.string)
+        (Decode.field "meaning" Decode.string)
+        (Decode.field "hsk" Decode.int)
         (Decode.field "isSaved" Decode.bool |> maybeBool)
 
 type alias NestedMeaning =
@@ -99,9 +98,7 @@ japaneseSchema =
         let
             -- Format the integer into a nice tag pill
             tags =
-                [ "JLPT N" ++ String.fromInt jlpt
-                , "JAPANESE"
-                ]
+                [ "JLPT N" ++ String.fromInt jlpt ]
         in
         { id = id
         , language = "jp"

@@ -410,23 +410,47 @@ body, html {
     z-index: 10;
 }
 
+/* Base button structure (No color definitions here) */
 .save-btn {
     background: transparent;
     border: none;
-    color: var(--heart-color);
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     padding: 0.4rem 0.75rem;
     border-radius: 20px;
-    transition: background-color 0.2s ease;
+    /* Transition 'all' so color and opacity animate smoothly */
+    transition: all 0.2s ease; 
     display: flex;
     align-items: center;
     gap: 0.35rem;
 }
 
-.save-btn:hover {
-    background-color: rgba(251, 113, 133, 0.15); /* Adjusted hover tint */
+/* =========================================
+   UNSAVED STATE (Faded and subtle)
+   ========================================= */
+.save-btn.unsaved {
+    color: #64748b; /* Muted slate/gray color */
+    opacity: 0.6;   /* Faded out so it blends into the background */
+}
+
+.save-btn.unsaved:hover {
+    opacity: 1;     /* Bring to full opacity on hover */
+    color: #f8fafc; /* Brighten text to show interactivity */
+    background-color: rgba(255, 255, 255, 0.1); /* Neutral background hover */
+}
+
+/* =========================================
+   SAVED STATE (Vibrant and distinct)
+   ========================================= */
+.save-btn.saved {
+    color: var(--heart-color, #fb7185); 
+    opacity: 1;
+}
+
+.save-btn.saved:hover {
+    /* Retain your existing hover tint for the saved state */
+    background-color: rgba(251, 113, 133, 0.15); 
 }
 
 /* --- Card Body (The AST Container) --- */
@@ -1028,3 +1052,189 @@ body, html {
 }
 
 .action-btn:hover { opacity: 0.9; }
+
+
+
+
+
+/* The main card container */
+
+/* The prompt area */
+.flashcard-front {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+/* The subtle horizontal line */
+.flashcard-divider {
+    border: 0;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 30px 0;
+}
+
+/* Center the interaction area */
+.flashcard-action {
+    display: flex;
+    justify-content: center;
+}
+
+/* The flush input and button layout */
+.typing-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.typing-input-container input {
+    padding: 10px 16px;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #e2e8f0;
+    border-right: none; /* Remove right border so it sits flush with the button */
+    border-radius: 4px 0 0 4px; /* Round only the left side */
+    outline: none;
+    width: 280px;
+}
+
+.typing-input-container input:focus {
+    box-shadow: inset 0 0 0 2px #3b82f6; /* Focus ring for accessibility */
+    border-color: #3b82f6;
+}
+
+.typing-input-container button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
+    border-radius: 0 4px 4px 0; /* Round only the right side */
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.typing-input-container button:hover {
+    background-color: #f1f5f9;
+}
+
+.btn-skip {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #94a3b8;
+    border: 1px solid #475569;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-skip:hover {
+    background-color: #334155;
+    color: #f8fafc;
+}
+
+.typing-feedback-error {
+    color: #ef4444;
+    margin-top: 15px;
+    font-weight: 500;
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* 1. FIX THE DOUBLE LINE */
+/* Strip out any old borders that might be lingering from previous layouts */
+.flashcard-front, 
+.flashcard-action {
+    border: none !important;
+}
+
+.flashcard-divider {
+    border: none;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 32px 0;
+    width: 100%;
+}
+
+/* 2. POLISH THE TYPOGRAPHY */
+.typing-prompt-label {
+    font-size: 0.9rem;
+    color: #94a3b8; /* Slate 400 */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.typing-prompt-text {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 0;
+    color: #f8fafc;
+}
+
+/* 3. STYLE THE RESULTS AREA */
+.typing-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px; /* Adds perfectly even spacing between elements */
+    width: 100%;
+}
+
+.typing-results p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #94a3b8; /* Muted label color */
+}
+
+.typing-results strong {
+    color: #f8fafc; /* Bright white for the actual Korean text */
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin-left: 8px;
+}
+
+.typing-results h3 {
+    margin: 10px 0 20px 0;
+    font-size: 1.5rem;
+}
+
+/* Color code the score based on Elm's feedbackClass */
+.typing-results.correct h3 {
+    color: #4ade80; /* Green for good */
+}
+
+.typing-results.incorrect h3 {
+    color: #f87171; /* Red for Again */
+}
+
+/* 4. MODERN BUTTON STYLING */
+.btn-next {
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background-color: #3b82f6; /* Beautiful standard blue */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-next:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+}
+
+.btn-next:active {
+    transform: translateY(2px); /* Satisfying physical click effect */
+}

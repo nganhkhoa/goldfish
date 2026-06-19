@@ -12,7 +12,9 @@ view onSave ast =
         [ -- Header (Save Button)
           div [ class "card-header" ]
             [ button
-                [ class "save-btn", onClick (onSave ast) ]
+                [ class ("save-btn " ++ if ast.isSaved then "saved" else "unsaved")
+                , onClick (onSave ast)
+                ]
                 [ text (if ast.isSaved then "♥ Saved" else "♡ Save") ]
             ]
         , -- Body (Iterate through the AST and render each block)

@@ -396,8 +396,14 @@ const parseChinese = (rawText) => {
         if (!trimmed || trimmed.startsWith('simplified')) return acc;
 
         const parts = trimmed.split('\t');
+        let hsk;
+        if (parts[4] === "7-9") {
+          hsk = 7;
+        } else {
+          hsk = parseInt(parts[4], 10);
+        }
+
         if (parts.length >= 5) {
-            const hskLevel = parseInt(parts[4], 10);
             acc.push({
                 id: parts[0],
                 simplified: parts[0],
@@ -405,7 +411,7 @@ const parseChinese = (rawText) => {
                 pinyin: parts[2],
                 zhuyin: null,
                 meaning: parts[3],
-                hsk: isNaN(hskLevel) ? 0 : hskLevel
+                hsk: hsk
             });
         }
         return acc;
