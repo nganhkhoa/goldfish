@@ -467,7 +467,6 @@ body, html {
     color: var(--text-main);
     margin: 0;
     line-height: 1.2;
-    padding-right: 4rem;
 }
 
 .block-sub-title {
@@ -475,7 +474,6 @@ body, html {
     color: var(--text-muted);
     font-weight: 500;
     display: inline-block;
-    margin-right: 0.75rem;
 }
 
 .block-meaning {
