@@ -32,3 +32,7 @@ port authStatusChanged : (Bool -> msg) -> Sub msg
 
 -- Sends back a status message (e.g., "Synced successfully", "Downloaded new data")
 port syncStatus : (String -> msg) -> Sub msg
+
+
+port requestWordsByLevelNotebook : Encode.Value -> Cmd msg
+port receiveWordsByLevelNotebook : (Decode.Value -> msg) -> Sub msg

@@ -595,6 +595,21 @@ export const onReady = ({ app }) => {
     });
   }
 
+  if (app.ports.requestWordsByLevelNotebook) {
+    // 1. Add 'payload' here to receive the JSON object from Elm
+    app.ports.requestWordsByLevelNotebook.subscribe(async (payload) => {
+
+      // 2. Destructure the lang and level that Elm sent
+      const { lang, level } = payload;
+
+      // 3. Pass them into your DB function
+      const result = await getWordsByLevelAsNotebookEntries(lang, level);
+
+      if (app.ports.receiveWordsByLevelNotebook) {
+        app.ports.receiveWordsByLevelNotebook.send(result);
+      }
+    });
+  }
   // 3. Handle Mutations (Add, Remove, Update)
   if (app.ports.mutateNotebook) {
     app.ports.mutateNotebook.subscribe(async (mutation) => {
@@ -638,4 +653,108 @@ export const onReady = ({ app }) => {
       }
     });
   }
+};
+
+
+const getWordsByLevel = async (language, level) => {
+  const db = await dbPromise;
+
+  // 1. Setup the right dictionary store and level key
+  let storeName;
+  let levelKey;
+  switch (language) {
+    case "cn": storeName = CN_STORE_NAME; levelKey = "hsk"; break;
+    case "ja": case "jp": storeName = JP_STORE_NAME; levelKey = "jlpt"; break;
+    case "ko": storeName = KR_STORE_NAME; levelKey = "topik"; break;
+    default: return null;
+  }
+
+  // 2. "I have a full word list, say chinese words"
+  const fullWordList = await db.getAll(storeName);
+
+  // 3. "I want to get out specific level words, full word -> filter by level"
+  const specificLevelWords = fullWordList.filter(word => word[levelKey] === level);
+
+  // 4. Get the notebook records
+  const notebookRecords = await db.getAll(NOTEBOOK_STORE_NAME);
+
+  // (Optional but highly recommended): Create a quick lookup map of { word_id: notebook_id }
+  // so we don't have to loop through the entire notebook for every single word.
+  const savedWordsMap = new Map();
+  for (const nb of notebookRecords) {
+    const isMatchingLang = nb.language === language ||
+                           (language === "ja" && nb.language === "jp") ||
+                           (language === "jp" && nb.language === "ja");
+    if (isMatchingLang) {
+      savedWordsMap.set(nb.word_id, nb.id);
+    }
+  }
+
+  // 5. "Extend the entry with a notebook id if it is already in the notebook"
+  const entries = specificLevelWords.map(word => {
+    return {
+      ...word,
+      // If word.id is in the notebook, attach the notebook entry's id, otherwise null
+      notebook_id: savedWordsMap.has(word.id) ? savedWordsMap.get(word.id) : null
+    };
+  });
+
+  return {
+    lang: language,
+    level: level,
+    entries: entries
+  };
+};
+
+const getWordsByLevelAsNotebookEntries = async (language, level) => {
+  console.log("filter language " + language + " " + level);
+  const db = await dbPromise;
+
+  // 1. Setup the right dictionary store and level key
+  let storeName;
+  let levelKey;
+  switch (language) {
+    case "cn": storeName = CN_STORE_NAME; levelKey = "hsk"; break;
+    case "ja": case "jp": storeName = JP_STORE_NAME; levelKey = "jlpt"; break;
+    case "ko": storeName = KR_STORE_NAME; levelKey = "topik"; break;
+    default: return null;
+  }
+
+  // 2. Get the full word list and filter by level
+  const fullWordList = await db.getAll(storeName);
+  const specificLevelWords = fullWordList.filter(word => word[levelKey] === level);
+
+  // 3. Get the notebook records
+  const notebookRecords = await db.getAll(NOTEBOOK_STORE_NAME);
+
+  // 4. Map word_id -> FULL notebook record (so we get memory_level, interval, etc.)
+  const savedWordsMap = new Map();
+  for (const nb of notebookRecords) {
+    const isMatchingLang = nb.language === language ||
+                           (language === "ja" && nb.language === "jp") ||
+                           (language === "jp" && nb.language === "ja");
+    if (isMatchingLang) {
+      savedWordsMap.set(nb.word_id, nb);
+    }
+  }
+
+  let i = 0;
+  // 5. Convert each dictionary word into the "Notebook Entry" shape
+  const entries = specificLevelWords.map(dictWord => {
+    i = i - 1;
+    const nb = savedWordsMap.get(dictWord.id); // Get the notebook record if it exists
+
+    return {
+      notebook_id: nb ? nb.id : i,               // null indicates it's not in the notebook yet
+      memory_level: nb ? nb.memory_level : 0,       // Default to 0
+      lang: language,
+      dict_data: dictWord,                          // Store the full dict word object here
+      interval: (nb && nb.interval) ? nb.interval : 0,
+      easeFactor: (nb && nb.easeFactor) ? nb.easeFactor : 2.5,
+      nextReview: (nb && nb.nextReview) ? nb.nextReview : 0
+    };
+  });
+
+  console.log("found words of " + language + " " + level + " count:" + entries.length);
+  return entries;
 };

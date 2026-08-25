@@ -37,18 +37,23 @@ toLayout model =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Ports.receiveNotebook GotNotebookData
+    Sub.batch
+        [ Ports.receiveNotebook GotNotebookData
+        , Ports.receiveWordsByLevelNotebook GotNotebookData
+        ]
 
 -- 1. DOMAIN & STATE
 
 type ViewState
     = NotebookList
-    | InsideNotebook String
+    | InsideNotebook
+    | LoadingLevel
 
 type alias Model =
     { viewState : ViewState
     , entries : List NotebookEntry
     , expandedCardAst : Maybe CardAST -- For the full card modal
+    , lang : Maybe String
     }
 
 
@@ -57,6 +62,7 @@ type alias Model =
 type Msg
     = GotNotebookData Decode.Value
     | OpenNotebook String
+    | OpenLevel String Int
     | GoBack
     | FlipCard Int
     | RemoveEntry Int
@@ -69,6 +75,7 @@ init _ =
     ( { viewState = NotebookList
       , entries = []
       , expandedCardAst = Nothing
+      , lang = Nothing
       }
     , Effect.sendCmd (Ports.requestNotebook ())
     )
@@ -113,7 +120,7 @@ update msg model =
             ( { model | entries = validEntries }, Effect.none )
 
         OpenNotebook lang ->
-            ( { model | viewState = InsideNotebook lang }, Effect.none )
+            ( { model | viewState = InsideNotebook, lang = Just lang}, Effect.none )
 
         GoBack ->
             ( { model | viewState = NotebookList, expandedCardAst = Nothing }, Effect.none )
@@ -206,6 +213,18 @@ update msg model =
             , Effect.sendCmd (Ports.mutateNotebook payload)
             )
 
+        OpenLevel lang level ->
+            let
+                payload =
+                    Encode.object
+                        [ ( "lang", Encode.string lang )
+                        , ( "level", Encode.int level )
+                        ]
+            in
+            ( { model | viewState = InsideNotebook, entries = [], lang = Just lang }
+            , Effect.sendCmd (Ports.requestWordsByLevelNotebook payload)
+            )
+
         ExpandCard ast ->
             ( { model | expandedCardAst = Just ast }, Effect.none )
 
@@ -221,14 +240,16 @@ view model =
     , body =
         [ div [ class "notebook-container" ]
             [ case model.viewState of
+                LoadingLevel ->
+                    div [ class "loading-state" ] [ text "Loading words..." ]
+
                 NotebookList ->
                     viewNotebookList model.entries
 
-                InsideNotebook lang ->
-                    viewNotebookGrid lang model.entries
+                InsideNotebook ->
+                    viewNotebookGrid model.lang model.entries
 
-            , -- The Full Card Modal Overlay
-              viewModal model.expandedCardAst
+            , viewModal model.expandedCardAst
             ]
         ]
     }
@@ -246,6 +267,20 @@ viewNotebookList entries =
                 [ h3 [] [ text title ]
                 , span [ class "pack-count" ] [ text (String.fromInt count ++ " saved words") ]
                 ]
+
+        viewLangGroup title lang prefix levels =
+            div [ class "lang-group-card" ]
+                [ h3 [] [ text title ]
+                , div [ class "level-buttons" ]
+                    (List.map
+                        (\lvl ->
+                            button
+                                [ class "pack-card", onClick (OpenLevel lang lvl) ]
+                                [ text (prefix ++ " " ++ String.fromInt lvl) ]
+                        )
+                        levels
+                    )
+                ]
     in
     div []
         [ h2 [ class "page-title" ] [ text "Your Notebooks" ]
@@ -254,19 +289,21 @@ viewNotebookList entries =
             , viewPack "Chinese Pack" "cn" (countLang "cn")
             , viewPack "Japanese Pack" "jp" (countLang "jp")
             , viewPack "Korean Pack" "ko" (countLang "ko")
+            , viewLangGroup "Chinese" "cn" "HSK" [ 1, 2, 3, 4, 5, 6, 7 ]
+            , viewLangGroup "Japanese" "jp" "JLPT N" [ 5, 4, 3, 2, 1 ]
+            , viewLangGroup "Korean" "ko" "TOPIK" [ 1, 2 ]
             ]
         ]
 
 
 -- VIEW: The Flashcard Grid (Images 2 & 3)
-viewNotebookGrid : String -> List NotebookEntry -> Html Msg
+viewNotebookGrid : Maybe String -> List NotebookEntry -> Html Msg
 viewNotebookGrid targetLang allEntries =
     let
         filteredEntries =
-            if targetLang == "" then
-                allEntries
-            else
-                List.filter (\e -> e.language == targetLang) allEntries
+            case targetLang of
+                Just lang -> List.filter (\e -> e.language == lang) allEntries
+                _ -> allEntries
     in
     div []
         [ button [ class "back-btn", onClick GoBack ] [ text "← Back to Notebooks" ]
@@ -299,3 +336,4 @@ viewModal maybeAst =
                 ]
         Nothing ->
             text ""
+
