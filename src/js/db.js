@@ -310,10 +310,17 @@ const stripQuotes = (s) => {
 const fetchCompressedJson = async (path) => {
   const response = await fetch(path);
   if (!response.ok) throw new Error(`Failed to fetch dictionary ${path}: ${response.status}`);
-  // The web server advertises .gz with Content-Encoding: gzip, so fetch()
-  // transparently decompresses it. Do not manually apply DecompressionStream:
-  // that would attempt to decompress the already-decoded response a second time.
-  return response.json();
+
+  // Some production servers serve .gz as a raw file without the
+  // Content-Encoding header, while development servers transparently decode
+  // it. Inspect the magic bytes so both configurations work.
+  const bytes = new Uint8Array(await response.arrayBuffer());
+  const isGzip = bytes.length >= 2 && bytes[0] === 0x1f && bytes[1] === 0x8b;
+  if (isGzip) {
+    const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+    return JSON.parse(await new Response(stream).text());
+  }
+  return JSON.parse(new TextDecoder().decode(bytes));
 };
 
 const parseChinese = (rawText) => {
