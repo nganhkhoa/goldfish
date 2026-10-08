@@ -1,10 +1,13 @@
 module Pages.Goldfish.Notebook exposing (Model, Msg, page)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, disabled)
-import Html.Events exposing (onClick)
+import Html.Attributes exposing (class, disabled, value)
+import Html.Events exposing (on)
+import Html.Events exposing (onClick, stopPropagationOn)
 import Json.Decode as Decode
 import Json.Encode as Encode
+import Random
+import Random.Extra
 import Ports
 import Shared
 import Effect exposing (Effect)
@@ -39,7 +42,7 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ Ports.receiveNotebook GotNotebookData
-        , Ports.receiveWordsByLevelNotebook GotNotebookData
+        , Ports.receiveWordsByLevelNotebook GotLevelData
         ]
 
 -- 1. DOMAIN & STATE
@@ -52,7 +55,11 @@ type ViewState
 type alias Model =
     { viewState : ViewState
     , entries : List NotebookEntry
+    , notebookEntries : List NotebookEntry
+    , levelEntries : List NotebookEntry
     , expandedCardAst : Maybe CardAST -- For the full card modal
+    , conjugationRule : String
+    , conjugatedText : Maybe String
     , lang : Maybe String
     }
 
@@ -61,25 +68,61 @@ type alias Model =
 
 type Msg
     = GotNotebookData Decode.Value
+    | GotLevelData Decode.Value
     | OpenNotebook String
     | OpenLevel String Int
     | GoBack
-    | FlipCard Int
-    | RemoveEntry Int
-    | MarkRemembered Int
+    | FlipCard String
+    | RemoveEntry String
+    | MarkRemembered String
     | ExpandCard CardAST
     | CloseModal
+    | SetConjugationRule String
+    | ApplyConjugation
+    | IgnoreModalClick
+    | ShuffleWords
+    | ScrollToTop
+    | Shuffled (List Float)
 
 init : () -> ( Model, Effect Msg )
 init _ =
     ( { viewState = NotebookList
       , entries = []
+      , notebookEntries = []
+      , levelEntries = []
       , expandedCardAst = Nothing
+      , conjugationRule = "want"
+      , conjugatedText = Nothing
       , lang = Nothing
       }
     , Effect.sendCmd (Ports.requestNotebook ())
     )
 
+
+shuffleEntries : List NotebookEntry -> Random.Generator (List Float)
+shuffleEntries entries =
+    Random.list (List.length entries) (Random.float 0 1)
+
+sortByRandom : List Float -> List NotebookEntry -> List NotebookEntry
+sortByRandom values entries =
+    List.map Tuple.second
+        (List.sortBy Tuple.first (List.map2 Tuple.pair values entries))
+
+
+decodeEntries : Decode.Value -> List NotebookEntry
+decodeEntries jsonValue =
+    case Decode.decodeValue (Decode.list Decode.value) jsonValue of
+        Ok rawValues ->
+            List.filterMap
+                (\rawItem ->
+                    case Decode.decodeValue NotebookEntry.decoder rawItem of
+                        Ok entry -> Just entry
+                        Err _ -> Nothing
+                )
+                rawValues
+
+        Err _ ->
+            []
 
 -- 4. UPDATE PIPELINE
 
@@ -117,20 +160,48 @@ update msg model =
                             -- in
                             []
             in
-            ( { model | entries = validEntries }, Effect.none )
+            ( { model | entries = validEntries, notebookEntries = validEntries }, Effect.none )
+
+        ScrollToTop ->
+            ( model, Effect.sendCmd (Ports.scrollToTop ()) )
+
+        ShuffleWords ->
+            ( model, Effect.sendCmd (Random.generate Shuffled (shuffleEntries model.entries)) )
+
+        Shuffled order ->
+            ( { model | entries = sortByRandom order model.entries }
+            , Effect.none
+            )
+
+        GotLevelData jsonValue ->
+            let
+                decoded = decodeEntries jsonValue
+            in
+            ( { model | viewState = InsideNotebook, entries = decoded, levelEntries = decoded }
+            , Effect.none
+            )
 
         OpenNotebook lang ->
-            ( { model | viewState = InsideNotebook, lang = Just lang}, Effect.none )
+            -- Always reload the real notebook before showing the all-saved view.
+            -- The current entries may be a level-filtered result set.
+            ( { model | viewState = InsideNotebook, entries = [], lang = Just lang }
+            , Effect.sendCmd (Ports.requestNotebook ())
+            )
 
         GoBack ->
-            ( { model | viewState = NotebookList, expandedCardAst = Nothing }, Effect.none )
+            -- A level view uses the same `entries` field as the notebook view.
+            -- Clear it immediately and reload the actual notebook so level
+            -- words cannot leak into the notebook list after navigating back.
+            ( { model | viewState = NotebookList, entries = [], expandedCardAst = Nothing }
+            , Effect.sendCmd (Ports.requestNotebook ())
+            )
 
         FlipCard nbId ->
             let
                 updatedEntries =
                     List.map
                         (\entry ->
-                            if entry.notebookId == nbId then
+                            if entry.cardKey == nbId then
                                 let
                                     -- Scan the AST layout to see if a valid SubTitle block exists
                                     hasSubTitle =
@@ -168,20 +239,26 @@ update msg model =
             in
             ( { model | entries = updatedEntries }, Effect.none )
 
-        RemoveEntry nbId ->
-            let
-                deleteCmd =
-                    NotebookEntry.Remove { notebookId = nbId }
-                        |> NotebookEntry.encodeMutation
-                        |> Ports.mutateNotebook
-            in
-            ( model, Effect.sendCmd deleteCmd )
+        RemoveEntry cardKey ->
+            case List.filter (\entry -> entry.cardKey == cardKey) model.entries |> List.head of
+                Just entry ->
+                    let
+                        deleteCmd =
+                            NotebookEntry.Remove { notebookId = entry.notebookId }
+                                |> NotebookEntry.encodeMutation
+                                |> Ports.mutateNotebook
+                    in
+                    ( model, Effect.sendCmd deleteCmd )
+
+                Nothing ->
+                    ( model, Effect.none )
 
         MarkRemembered nbId ->
             let
-                -- 1. Find the current entry to determine the new level
+                -- Card interactions use the stable dictionary key, not a
+                -- generated notebook/index value.
                 maybeEntry =
-                    List.head (List.filter (\e -> e.notebookId == nbId) model.entries)
+                    List.head (List.filter (\e -> e.cardKey == nbId) model.entries)
 
                 newLevel =
                     case maybeEntry of
@@ -194,7 +271,7 @@ update msg model =
                 updatedEntries =
                     List.map
                         (\entry ->
-                            if entry.notebookId == nbId then
+                            if entry.cardKey == nbId then
                                 { entry | memoryLevel = newLevel }
                             else
                                 entry
@@ -203,11 +280,16 @@ update msg model =
 
                 -- 3. DB Mutation Payload
                 payload =
-                    Encode.object
-                        [ ( "action", Encode.string "UPDATE_LEVEL" )
-                        , ( "notebookIdString", Encode.string (String.fromInt nbId) )
-                        , ( "newLevel", Encode.int newLevel )
-                        ]
+                    case maybeEntry of
+                        Just entry ->
+                            Encode.object
+                                [ ( "action", Encode.string "UPDATE_LEVEL" )
+                                , ( "notebookIdString", Encode.string (String.fromInt entry.notebookId) )
+                                , ( "newLevel", Encode.int newLevel )
+                                ]
+
+                        Nothing ->
+                            Encode.object []
             in
             ( { model | entries = updatedEntries }
             , Effect.sendCmd (Ports.mutateNotebook payload)
@@ -231,6 +313,21 @@ update msg model =
         CloseModal ->
             ( { model | expandedCardAst = Nothing }, Effect.none )
 
+        SetConjugationRule rule ->
+            ( { model | conjugationRule = rule }, Effect.none )
+
+        IgnoreModalClick ->
+            ( model, Effect.none )
+
+        ApplyConjugation ->
+            ( { model
+                | conjugatedText =
+                    model.expandedCardAst
+                        |> Maybe.andThen (\ast -> mainTitle ast |> Maybe.andThen (applyDemoRule model.conjugationRule))
+              }
+            , Effect.none
+            )
+
 
 -- 5. VIEW RENDERING
 
@@ -244,15 +341,29 @@ view model =
                     div [ class "loading-state" ] [ text "Loading words..." ]
 
                 NotebookList ->
-                    viewNotebookList model.entries
+                    viewNotebookList model.notebookEntries
 
                 InsideNotebook ->
                     viewNotebookGrid model.lang model.entries
 
-            , viewModal model.expandedCardAst
+            , floatingToolbar model.viewState
+            , viewModal model model.expandedCardAst
             ]
         ]
     }
+
+
+floatingToolbar : ViewState -> Html Msg
+floatingToolbar state =
+    case state of
+        NotebookList ->
+            text ""
+
+        _ ->
+            div [ class "floating-toolbar" ]
+                [ button [ class "toolbar-button", onClick ScrollToTop ] [ text "↑ Top" ]
+                , button [ class "toolbar-button", onClick ShuffleWords ] [ text "🔀 Shuffle" ]
+                ]
 
 
 -- VIEW: The Summary List (Image 1)
@@ -315,10 +426,10 @@ viewNotebookGrid targetLang allEntries =
                         { ast = entry.ast
                         , flipState = entry.flipState
                         , memoryLevel = entry.memoryLevel
-                        , onFlip = FlipCard entry.notebookId
+                        , onFlip = FlipCard entry.cardKey
                         , onExpand = ExpandCard entry.ast
-                        , onRemember = MarkRemembered entry.notebookId
-                        , onRemove = RemoveEntry entry.notebookId
+                        , onRemember = MarkRemembered entry.cardKey
+                        , onRemove = RemoveEntry entry.cardKey
                         }
                 )
                 filteredEntries
@@ -326,13 +437,48 @@ viewNotebookGrid targetLang allEntries =
         ]
 
 -- VIEW: The Expand Modal
-viewModal : Maybe CardAST -> Html Msg
-viewModal maybeAst =
+mainTitle : CardAST -> Maybe String
+mainTitle ast =
+    ast.layout
+        |> List.filterMap (\block -> case block of
+            MainTitle word -> Just word
+            _ -> Nothing
+        )
+        |> List.head
+
+applyDemoRule : String -> String -> Maybe String
+applyDemoRule rule word =
+    case rule of
+        "want" -> Just (if String.endsWith "る" word then String.dropRight 1 word ++ "たい" else word ++ "たい")
+        "negative" -> Just (if String.endsWith "い" word then String.dropRight 1 word ++ "くない" else word ++ "ない")
+        "polite" -> Just (if String.endsWith "る" word then String.dropRight 1 word ++ "ます" else word ++ "ます")
+        _ -> Just word
+
+conjugationPanel : Model -> CardAST -> Html Msg
+conjugationPanel model ast =
+    div [ class "conjugation-panel" ]
+        [ h3 [] [ text "Conjugation helper" ]
+        , select [ on "change" (Decode.map SetConjugationRule (Decode.field "target" (Decode.field "value" Decode.string))) ]
+            [ option [ value "want" ] [ text "Want to do (たい)" ]
+            , option [ value "negative" ] [ text "Negative informal" ]
+            , option [ value "polite" ] [ text "Polite form" ]
+            ]
+        , button [ class "reading-primary-button", onClick ApplyConjugation ] [ text "Add" ]
+        , case model.conjugatedText of
+            Just result -> p [ class "conjugation-result" ] [ text result ]
+            Nothing -> text ""
+        ]
+
+
+viewModal : Model -> Maybe CardAST -> Html Msg
+viewModal model maybeAst =
     case maybeAst of
         Just ast ->
             div [ class "modal-backdrop", onClick CloseModal ]
-                [ div [ class "modal-content", onClick CloseModal ]
-                    [ Card.view (\_ -> CloseModal) ast ]
+                [ div [ class "modal-content", stopPropagationOn "click" (Decode.succeed ( IgnoreModalClick, True )) ]
+                    [ Card.view (\_ -> CloseModal) ast
+                    , conjugationPanel model ast
+                    ]
                 ]
         Nothing ->
             text ""

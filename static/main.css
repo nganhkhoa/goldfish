@@ -309,7 +309,7 @@ body, html {
     .search-right-tab, 
     .search-center-tab {
         flex: auto;
-        width: 100%;
+        /* width: 100%; */
         min-height: auto;
     }
 
@@ -1236,3 +1236,100 @@ body, html {
 .btn-next:active {
     transform: translateY(2px); /* Satisfying physical click effect */
 }
+
+.floating-toolbar {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 20;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 14px;
+    background: rgba(20, 25, 35, 0.92);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.toolbar-button { border: 0; border-radius: 9px; padding: 9px 12px; color: white; background: #39465c; cursor: pointer; }
+.toolbar-button:hover { background: #536783; }
+
+/* English search switch */
+.english-search-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 4px;
+    padding: 9px 12px;
+    border: 1px solid #334155;
+    border-radius: 9px;
+    background: #172235;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.english-search-toggle:hover {
+    border-color: #64748b;
+    background: #22314a;
+    color: #f8fafc;
+}
+
+.english-search-toggle input {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: #3b82f6;
+    cursor: pointer;
+}
+
+.english-search-toggle:has(input:checked) {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.18);
+    color: #dbeafe;
+}
+
+.reading-page { max-width: 1100px; margin: 0 auto; padding: 24px; }
+.reading-input-panel, .reading-sentence-panel, .reading-words-panel { background: #172235; border: 1px solid #334155; border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+.reading-language-buttons, .reading-navigation { display: flex; gap: 8px; margin: 12px 0; }
+.reading-language-buttons button, .reading-navigation button, .reading-primary-button { border: 0; border-radius: 8px; padding: 10px 14px; background: #334155; color: #f8fafc; cursor: pointer; }
+.reading-language-buttons button.active, .reading-primary-button { background: #2563eb; }
+.reading-text-input { width: 100%; box-sizing: border-box; padding: 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #f8fafc; resize: vertical; }
+.reading-workspace { display: grid; grid-template-rows: 1fr 1fr; gap: 16px; }
+.reading-sentence-panel { min-height: 230px; }
+.reading-sentence-panel h2 { line-height: 2; color: #f8fafc; }
+.sentence-word { cursor: pointer; }
+.translation-placeholder, .reading-counter, .word-card-translation { color: #94a3b8; }
+.reading-word-cards { display: flex; flex-wrap: wrap; gap: 10px; }
+.reading-word-card { display: flex; flex-direction: column; gap: 6px; min-width: 110px; padding: 14px; border: 1px solid #334155; border-radius: 10px; background: #1e293b; color: #f8fafc; cursor: pointer; }
+.reading-word-card:hover, .reading-word-card.selected { border-color: #3b82f6; background: #223b65; }
+@media (max-width: 600px) { .reading-page { padding: 12px; } }
+
+/* Compact header: navigation is a dropdown on desktop and mobile. */
+.hamburger-btn { display: block; margin-left: auto; }
+.header-nav { display: none; position: absolute; top: 100%; right: 1rem; z-index: 50; min-width: 220px; padding: 1rem; flex-direction: column; align-items: stretch; gap: 1rem; background: #0f172a; border: 1px solid #1e293b; border-radius: 0 0 10px 10px; box-shadow: 0 10px 20px rgba(0,0,0,.35); }
+.header-nav.is-open { display: flex; }
+.nav-left, .nav-right { flex-direction: column; align-items: stretch; gap: .75rem; }
+.nav-right { margin-top: .5rem; padding-top: .75rem; border-top: 1px solid #1e293b; }
+@media (max-width: 768px) {
+  .header-nav { left: 1rem; right: 1rem; }
+}
+
+.conjugation-panel { margin-top: 18px; padding: 16px; border: 1px solid #475569; border-radius: 12px; background: #0f172a; }
+.conjugation-panel select { margin: 0 8px 0 0; padding: 9px; border: 1px solid #475569; border-radius: 7px; background: #1e293b; color: #f8fafc; }
+.conjugation-toggle { margin-top: 8px; padding: 7px 10px; border: 0; border-radius: 6px; background: #475569; color: white; cursor: pointer; }
+.conjugation-result { color: #93c5fd; font-size: 1.25rem; font-weight: 700; }
+
+.export-db-link { font: inherit; cursor: pointer; }
+
+.export-db-link {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    text-align: left;
+    font: inherit;
+    color: #94a3b8;
+}
+.export-db-link:hover { color: #f8fafc; }

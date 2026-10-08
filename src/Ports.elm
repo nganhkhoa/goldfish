@@ -9,6 +9,7 @@ port installProgress : (String -> msg) -> Sub msg
 
 -- OUTBOUND
 port startDbInstall : () -> Cmd msg
+port requestDbStatus : () -> Cmd msg
 
 -- SEARCH
 port requestSearch : Encode.Value -> Cmd msg
@@ -25,6 +26,9 @@ port mutateNotebook : Encode.Value -> Cmd msg
 port requestSignIn : () -> Cmd msg
 port requestSignOut : () -> Cmd msg
 port requestSync : () -> Cmd msg
+port requestExportDatabase : () -> Cmd msg
+port importDatabaseFile : () -> Cmd msg
+port importStatus : (String -> msg) -> Sub msg
 
 -- INBOUND (JS -> Elm)
 -- True if logged in, False if logged out
@@ -36,3 +40,6 @@ port syncStatus : (String -> msg) -> Sub msg
 
 port requestWordsByLevelNotebook : Encode.Value -> Cmd msg
 port receiveWordsByLevelNotebook : (Decode.Value -> msg) -> Sub msg
+
+port scrollToTop : () -> Cmd msg
+

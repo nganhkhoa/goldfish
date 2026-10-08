@@ -7,6 +7,7 @@ import Schema exposing (CardAST, Block(..), decodeToAST)
 
 type alias NotebookEntry =
     { notebookId : Int
+    , cardKey : String
     , memoryLevel : Int
     , language : String
     , ast : CardAST
@@ -32,9 +33,24 @@ decoder =
     Decode.field "lang" Decode.string
         |> Decode.andThen
             (\lang ->
-                -- We use map8 because NotebookEntry now has exactly 8 fields
-                Decode.map8 NotebookEntry
-                    (Decode.field "notebook_id" Decode.int)
+                -- The stable card key is separate from the real notebook row ID.
+                Decode.map8
+                    (\(notebookId, cardKey) memoryLevel languageValue ast flipState interval easeFactor nextReview ->
+                        { notebookId = notebookId
+                        , cardKey = cardKey
+                        , memoryLevel = memoryLevel
+                        , language = languageValue
+                        , ast = ast
+                        , flipState = flipState
+                        , interval = interval
+                        , easeFactor = easeFactor
+                        , nextReview = nextReview
+                        }
+                    )
+                    (Decode.map2 Tuple.pair
+                        (Decode.field "notebook_id" Decode.int)
+                        (Decode.field "card_key" Decode.string)
+                    )
                     (Decode.field "memory_level" Decode.int)
                     (Decode.succeed lang)
                     (Decode.field "dict_data" (decodeToAST lang))

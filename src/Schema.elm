@@ -58,7 +58,7 @@ chineseSchema : Decode.Decoder CardAST
 chineseSchema =
     Decode.map7 (\id simplified traditional pinyin meaning hsk isSaved ->
         let
-            hskstring = if hsk == 7 then "7-9" else String.fromInt hsk
+            hskstring = String.fromInt hsk
         in
         { id = id
         , language = "cn"
@@ -98,7 +98,7 @@ japaneseSchema =
         let
             -- Format the integer into a nice tag pill
             tags =
-                [ "JLPT N" ++ String.fromInt jlpt ]
+                if jlpt == 0 then [] else [ "JLPT N" ++ String.fromInt jlpt ]
         in
         { id = id
         , language = "jp"

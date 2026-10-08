@@ -6,7 +6,6 @@ module Effect exposing
     , pushRoutePath, replaceRoutePath
     , loadExternalUrl, back
     , map, toCmd
-
     , installDatabase
     )
 

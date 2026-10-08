@@ -18,7 +18,10 @@ import Set exposing (Set)
 
 import Components.Card
 import Components.Card exposing (..)
+import NotebookEntry exposing (..)
 import Schema exposing (CardAST, decodeToAST)
+
+import Database.Consts exposing (..)
 
 import Layouts
 
@@ -27,20 +30,23 @@ itemsPerPage = 3
 
 type alias Model =
     { query : String
-    , activeLanguage : String
+    , activeLanguage : Language
     , results : List CardAST
     , currentPage : Int
     , savedWordIds : Set ( String, String )
+    , englishSearch : Bool
+    , hasSearched : Bool
     }
 
 type Msg
-    = SetLanguage String
+    = SetLanguage Language
     | UpdateQuery String
     | SaveResult CardAST
     | GotResults Decode.Value
     | GotNotebookData Decode.Value
     | DoSearch
     | SetPage Int
+    | ToggleEnglishSearch
 
 page : Shared.Model -> Route () -> Page Model Msg
 page shared route =
@@ -62,10 +68,12 @@ toLayout model =
 init : () -> ( Model, Effect Msg )
 init _ =
     ( { query = ""
-      , activeLanguage = "Korean"
+      , activeLanguage = Korean
       , results = []
       , currentPage = 1
       , savedWordIds = Set.empty
+      , englishSearch = False
+      , hasSearched = False
       }
     , Effect.sendCmd (Ports.requestNotebook ()) -- Request notebook on load
     )
@@ -80,49 +88,6 @@ syncResultsWithNotebook notebookSet currentResults =
         currentResults
 
 
--- NEW: Type-Safe JS Mutations
-type NotebookMutation
-    = AddWord { lang : String, wordId : String, refId : Maybe String }
-    | RemoveWordByWordId { lang : String, wordId : String }
-    | RemoveWordById { notebookId : String }
-    | UpdateLevel { notebookId : String, newLevel : Int }
-
-encodeMutation : NotebookMutation -> Encode.Value
-encodeMutation mutation =
-    case mutation of
-        AddWord data ->
-            Encode.object
-                [ ( "action", Encode.string "ADD" )
-                , ( "lang", Encode.string data.lang )
-                , ( "wordId", Encode.string data.wordId )
-                , ( "refId"
-                  , case data.refId of
-                        Just id -> Encode.string id
-                        Nothing -> Encode.null
-                  )
-                ]
-
-        RemoveWordByWordId data ->
-            Encode.object
-                [ ( "action", Encode.string "REMOVE_BY_WORD_ID" )
-                , ( "lang", Encode.string data.lang )
-                , ( "wordId", Encode.string data.wordId )
-                ]
-
-        RemoveWordById data ->
-            Encode.object
-                [ ( "action", Encode.string "REMOVE" )
-                , ( "notebookIdString", Encode.string data.notebookId )
-                ]
-
-        UpdateLevel data ->
-            Encode.object
-                [ ( "action", Encode.string "UPDATE_LEVEL" )
-                , ( "notebookIdString", Encode.string data.notebookId )
-                , ( "newLevel", Encode.int data.newLevel )
-                ]
-
-
 update : Msg -> Model -> (Model, Effect Msg)
 update msg model =
     case msg of
@@ -133,26 +98,22 @@ update msg model =
             ({ model | query = newQuery }, Effect.none)
 
         DoSearch ->
-            let lang =
-                    case model.activeLanguage of
-                        "Chinese" -> "cn"
-                        "Korean" -> "ko"
-                        "Japanese" -> "jp"
-                        _ -> ""
+            let lang = short_language_string model.activeLanguage
             in
             let
                 payload =
                     Encode.object
                         [ ( "query", Encode.string model.query )
                         , ( "lang", Encode.string lang )
+                        , ( "includeEnglish", Encode.bool model.englishSearch )
                         ]
             in
-            ( model
+            ( { model | hasSearched = True }
             , Effect.sendCmd (Ports.requestSearch payload)
             )
 
         GotResults jsonValue ->
-            case Decode.decodeValue (Decode.list (decodeToAST model.activeLanguage)) jsonValue of
+            case Decode.decodeValue (Decode.list (decodeToAST (long_language_string model.activeLanguage))) jsonValue of
                 Ok validASTs ->
                     let syncedResults = syncResultsWithNotebook model.savedWordIds validASTs
                     in
@@ -170,6 +131,9 @@ update msg model =
                     ( { model | results = [], currentPage = 1 }
                     , Effect.none
                     )
+
+        ToggleEnglishSearch ->
+            ( { model | englishSearch = not model.englishSearch }, Effect.none )
 
         SetPage newPage ->
             ( { model | currentPage = newPage }
@@ -193,7 +157,7 @@ update msg model =
                 dbEffect =
                     if targetAst.isSaved then
                         -- REMOVING
-                        RemoveWordByWordId
+                        RemoveByWordId
                             { lang = targetAst.language
                             , wordId = targetAst.id
                             }
@@ -202,10 +166,10 @@ update msg model =
                             |> Effect.sendCmd
                     else
                         -- ADDING
-                        AddWord
+                        Add
                             { lang = targetAst.language
                             , wordId = targetAst.id
-                            , refId = Nothing
+                            , refId = ""
                             }
                             |> encodeMutation
                             |> Ports.mutateNotebook
@@ -271,13 +235,17 @@ view model =
 
             , section [ class "search-center-tab" ]
                 [ div [ class "language-switch-group" ]
-                    [ viewLanguageButton "Chinese" model.activeLanguage
-                    , viewLanguageButton "Korean" model.activeLanguage
-                    , viewLanguageButton "Japanese" model.activeLanguage
+                    [ viewLanguageButton Chinese model.activeLanguage
+                    , viewLanguageButton Korean model.activeLanguage
+                    , viewLanguageButton Japanese model.activeLanguage
                     ]
 
                 , div [ class "search-input-group" ]
-                    [ input
+                    [ label [ class "english-search-toggle" ]
+                        [ input [ type_ "checkbox", checked model.englishSearch, onClick ToggleEnglishSearch ] []
+                        , text " EN"
+                        ]
+                    , input
                         [ placeholder "Enter vocabulary..."
                         , value model.query
                         , onInput UpdateQuery
@@ -287,7 +255,10 @@ view model =
 
                 , div [ class "search-results" ]
                     (if List.isEmpty model.results then
-                        [ div [ class "empty-state" ] [ text "No results. Try searching for a word." ] ]
+                        if model.hasSearched then
+                            [ div [ class "empty-state" ] [ text "No results found. Try a different spelling or enable English search." ] ]
+                        else
+                            [ div [ class "empty-state" ] [ text "Enter a word to search." ] ]
                      else
                         List.map viewCard paginatedResults
                         ++ [ viewPagination model.currentPage totalPages ]
@@ -302,13 +273,13 @@ view model =
     }
 
 
-viewLanguageButton : String -> String -> Html Msg
+viewLanguageButton : Language -> Language -> Html Msg
 viewLanguageButton lang activeLang =
     button
         [ class "lang-btn", (if lang == activeLang then class "active" else class "" )
         , onClick (SetLanguage lang)
         ]
-        [ text lang ]
+        [ text (long_language_string lang) ]
 
 viewPagination : Int -> Int -> Html Msg
 viewPagination currentPage totalPages =

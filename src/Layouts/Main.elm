@@ -2,7 +2,7 @@ module Layouts.Main exposing (Model, Msg, Props, layout)
 
 import Effect exposing (Effect, installDatabase)
 import Html exposing (..)
-import Html.Attributes exposing (class, classList, disabled, href) -- Added 'disabled'
+import Html.Attributes exposing (class, classList, disabled, href)
 import Html.Events exposing (..)
 import Layout exposing (Layout)
 import Route exposing (Route)
@@ -31,11 +31,15 @@ layout props shared route =
 -- MODEL
 
 type alias Model =
-    { isMobileMenuOpen : Bool }
+    { isMobileMenuOpen : Bool
+    , databaseReady : Bool
+    }
 
 init : () -> ( Model, Effect Msg )
 init _ =
-    ( { isMobileMenuOpen = False }
+    ( { isMobileMenuOpen = False
+      , databaseReady = False
+      }
     , Effect.none
     )
 
@@ -45,10 +49,12 @@ init _ =
 type Msg
     = ToggleMenu
     | CloseMenu
-    | SignInClicked    -- ADDED
-    | SignOutClicked   -- ADDED
-    | SyncClicked      -- ADDED
-    | InstallClicked
+    | SignInClicked
+    | SignOutClicked
+    | SyncClicked
+    | ExportDatabaseClicked
+    | ReceivedDatabaseStatus Bool
+    | GotoSettings
 
 update : Msg -> Model -> ( Model, Effect Msg )
 update msg model =
@@ -63,7 +69,6 @@ update msg model =
             , Effect.none
             )
 
-        -- Delegate Auth/Sync actions to JavaScript via Ports
         SignInClicked ->
             ( model
             , Effect.sendCmd (Ports.requestSignIn ())
@@ -79,25 +84,31 @@ update msg model =
             , Effect.sendCmd (Ports.requestSync ())
             )
 
-        InstallClicked ->
+        ExportDatabaseClicked ->
             ( model
-            , installDatabase
+            , Effect.sendCmd (Ports.requestExportDatabase ())
+            )
+
+        GotoSettings ->
+            ( model , Effect.none)
+
+        ReceivedDatabaseStatus s ->
+            ( { model | databaseReady = s }
+            , Effect.none
             )
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Sub.none
+    Sub.batch
+        [ Ports.dbStatusReceived ReceivedDatabaseStatus
+        ]
 
 
 -- VIEW
 
 view : Shared.Model -> { toContentMsg : Msg -> contentMsg, content : View contentMsg, model : Model } -> View contentMsg
 view shared { toContentMsg, model, content } =
-    { title =
-        if shared.dbStatus == Shared.Model.Ready then
-            content.title
-        else
-            "Setup Required - Goldfish Dictionary"
+    { title = content.title
     , body =
         [ div [ class "app-layout" ]
             [ Html.map toContentMsg (viewHeader shared model)
@@ -105,43 +116,20 @@ view shared { toContentMsg, model, content } =
                 [ class "page-content"
                 , Html.Attributes.map toContentMsg (onClick CloseMenu)
                 ]
-                -- THE GATEKEEPER: Check the database status before rendering the page
-                (if shared.dbStatus == Shared.Model.Ready then
-                    content.body
-                 else
-                    [ Html.map toContentMsg (viewSetupScreen shared.dbStatus) ]
+                ((if model.databaseReady then
+                    []
+                  else
+                    [ Html.map toContentMsg notifySetupRequirement ]
+                 )
+                    ++ content.body
                 )
             ]
         ]
     }
 
-
--- THE NEW INSTALLATION UI
-viewSetupScreen : Shared.Model.DbStatus -> Html Msg
-viewSetupScreen status =
-    case status of
-        Shared.Model.Checking ->
-            div [ class "setup-screen" ]
-                [ text "Checking database..." ]
-
-        Shared.Model.NeedsInstall ->
-            div [ class "setup-screen" ]
-                [ h2 [] [ text "Offline Dictionaries Required" ]
-                , p [] [ text "Goldfish operates entirely offline after dictionaries are installed. Press the install button to get started." ]
-                , button
-                    [ class "install-btn", onClick InstallClicked ]
-                    [ text "Download & Install (~10MB)" ]
-                ]
-
-        Shared.Model.Installing progressText ->
-            div [ class "setup-screen" ]
-                [ h2 [] [ text "Installing Database..." ]
-                , p [ class "progress-text" ] [ text progressText ]
-                , div [ class "spinner" ] [] -- You can style this in CSS later
-                ]
-
-        Shared.Model.Ready ->
-            text "" -- This acts as a fallback; the 'if' statement above prevents this from ever rendering.
+notifySetupRequirement : Html Msg
+notifySetupRequirement =
+    div [] [ text "Setup required, please go to Settings page" ]
 
 viewHeader : Shared.Model -> Model -> Html Msg
 viewHeader shared model =
@@ -168,10 +156,18 @@ viewHeader shared model =
                     , class "nav-link"
                     , onClick ToggleMenu
                     ] [ text "Learn" ]
+                , a [ Route.Path.href Route.Path.Goldfish_Reader
+                    , class "nav-link"
+                    , onClick ToggleMenu
+                    ] [ text "Reader" ]
+                , a [ Route.Path.href Route.Path.Goldfish_Settings
+                    , class "nav-link"
+                    , onClick ToggleMenu
+                    ] [ text "Settings" ]
                 ]
             , div [ class "nav-right" ]
-                [ a [ href "#", class "nav-link" ] [ text "Settings" ]
-                , a [ href "#", class "nav-link" ] [ text "Export DB" ]
+                [ a [ Route.Path.href Route.Path.Goldfish_Import, class "nav-link", onClick ToggleMenu ] [ text "Import DB" ]
+                , button [ class "nav-link export-db-link", onClick ExportDatabaseClicked ] [ text "Export DB" ]
                 , div [ class "header-actions" ] [ viewAuthSection shared ]
                 ]
             ]
