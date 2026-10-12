@@ -35,7 +35,10 @@ def chinese():
         if not m:
             continue
         traditional, simplified, pinyin, meaning = m.groups()
-        records.append({"id": simplified,
+        # A character can have multiple readings/meanings. IndexedDB uses
+        # `id` as its key, so `simplified` alone would overwrite all but one
+        # of those dictionary entries during installation.
+        records.append({"id": stable_id("cn", traditional, simplified, pinyin, meaning),
                         "simplified": simplified, "traditional": traditional,
                         "pinyin": pinyin, "zhuyin": None, "meaning": meaning,
                         "hsk": 0})

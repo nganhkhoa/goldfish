@@ -32,7 +32,10 @@ export const onReady = async ({ app }) => {
   const reportDbStatus = async () => {
     // Report the persisted install flag immediately. Waiting for IndexedDB
     // here can leave a newly opened Settings page stuck on Checking.
-    send(app.ports.dbStatusReceived, localStorage.getItem('dict_db_loaded') === 'true');
+    const dictionaryReady =
+      localStorage.getItem('dict_db_loaded') === 'true'
+      && localStorage.getItem('dict_install_version') === '4';
+    send(app.ports.dbStatusReceived, dictionaryReady);
     try {
       await database;
     } catch (error) {

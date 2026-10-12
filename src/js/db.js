@@ -1,13 +1,15 @@
 const { openDB } = window.idb;
 
 export const DB_NAME = 'Dictionary';
-export const DB_VERSION = 3;
+export const DB_VERSION = 4;
 export const NOTEBOOK_STORE_NAME = 'note';
 export const CN_STORE_NAME = 'cn';
 export const KR_STORE_NAME = 'ko';
 export const JP_STORE_NAME = 'jp';
 
 const LOCAL_STORAGE_DICTIONARY_KEY = 'dict_db_loaded';
+const DICTIONARY_INSTALL_VERSION_KEY = 'dict_install_version';
+const DICTIONARY_DATA_VERSION = '4';
 
 const DICTIONARY_PATH_ROOT = '/goldfish/';
 // Full dictionaries are generated from resources/ and served compressed.
@@ -82,7 +84,10 @@ export const getNotebookEntries = async () => {
     // start a separate 100k+ record scan.
     if (!fallbackCaches.has(storeName)) fallbackCaches.set(storeName, db.getAll(storeName));
     const records = await fallbackCaches.get(storeName);
-    return records.find(word => String(word.id) === String(wordId));
+    return records.find(word =>
+      String(word.id) === String(wordId)
+      || (storeName === CN_STORE_NAME && (word.simplified === String(wordId) || word.traditional === String(wordId)))
+    );
   };
   const joinedEntries = await Promise.all(notebookRecords.map(async (nb) => {
     let storeName = languageToDictionary[nb.language];
@@ -447,6 +452,7 @@ export const bootstrapDatabase = async (dbPromise, reportProgress) => {
     await installStore(KR_STORE_NAME, koData, "Korean");
 
     localStorage.setItem(LOCAL_STORAGE_DICTIONARY_KEY, "true");
+    localStorage.setItem(DICTIONARY_INSTALL_VERSION_KEY, DICTIONARY_DATA_VERSION);
     reportProgress("Complete");
 };
 
