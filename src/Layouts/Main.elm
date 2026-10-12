@@ -160,6 +160,10 @@ viewHeader shared model =
                     , class "nav-link"
                     , onClick ToggleMenu
                     ] [ text "Reader" ]
+                , a [ Route.Path.href Route.Path.Goldfish_CharacterInput
+                    , class "nav-link"
+                    , onClick ToggleMenu
+                    ] [ text "Character input" ]
                 , a [ Route.Path.href Route.Path.Goldfish_Settings
                     , class "nav-link"
                     , onClick ToggleMenu

@@ -41,5 +41,8 @@ port syncStatus : (String -> msg) -> Sub msg
 port requestWordsByLevelNotebook : Encode.Value -> Cmd msg
 port receiveWordsByLevelNotebook : (Decode.Value -> msg) -> Sub msg
 
+port requestCharacterIndex : () -> Cmd msg
+port receiveCharacterIndex : (Decode.Value -> msg) -> Sub msg
+
 port scrollToTop : () -> Cmd msg
 

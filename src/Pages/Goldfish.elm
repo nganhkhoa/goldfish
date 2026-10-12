@@ -3,6 +3,7 @@ module Pages.Goldfish exposing (Model, Msg, page)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
+import Dict exposing (Dict)
 
 import Ports
 import Json.Decode as Decode
@@ -19,6 +20,8 @@ import Set exposing (Set)
 import Components.Card
 import Components.Card exposing (..)
 import NotebookEntry exposing (..)
+import Components.InlinePicker exposing (PickerCharacter, PickerLayout(..))
+import Components.InlinePicker as InlinePicker
 import Schema exposing (CardAST, decodeToAST)
 
 import Database.Consts exposing (..)
@@ -36,6 +39,12 @@ type alias Model =
     , savedWordIds : Set ( String, String )
     , englishSearch : Bool
     , hasSearched : Bool
+    , pickerOpen : Bool
+    , pickerLayout : Maybe PickerLayout
+    , pickerFamily : Maybe String
+    , pickerPart : Maybe String
+    , pickerCharacters : List PickerCharacter
+    , pickerComponents : Dict String (List String)
     }
 
 type Msg
@@ -47,6 +56,14 @@ type Msg
     | DoSearch
     | SetPage Int
     | ToggleEnglishSearch
+    | ToggleCharacterPicker
+    | ChoosePickerLayout PickerLayout
+    | ChoosePickerFamily String
+    | ChoosePickerPart String
+    | PickCharacter String
+    | RestartCharacterPicker Int
+    | CloseCharacterPicker
+    | GotCharacterIndex Decode.Value
 
 page : Shared.Model -> Route () -> Page Model Msg
 page shared route =
@@ -74,8 +91,14 @@ init _ =
       , savedWordIds = Set.empty
       , englishSearch = False
       , hasSearched = False
+      , pickerOpen = False
+      , pickerLayout = Nothing
+      , pickerFamily = Nothing
+      , pickerPart = Nothing
+      , pickerCharacters = []
+      , pickerComponents = Dict.empty
       }
-    , Effect.sendCmd (Ports.requestNotebook ()) -- Request notebook on load
+    , Effect.batch [ Effect.sendCmd (Ports.requestNotebook ()), Effect.sendCmd (Ports.requestCharacterIndex ()) ]
     )
 
 syncResultsWithNotebook : Set ( String, String ) -> List CardAST -> List CardAST
@@ -134,6 +157,38 @@ update msg model =
 
         ToggleEnglishSearch ->
             ( { model | englishSearch = not model.englishSearch }, Effect.none )
+
+        ToggleCharacterPicker ->
+            ( { model | pickerOpen = not model.pickerOpen }, Effect.none )
+
+        CloseCharacterPicker ->
+            ( { model | pickerOpen = False }, Effect.none )
+
+        ChoosePickerLayout layout ->
+            ( { model | pickerLayout = Just layout, pickerFamily = Nothing, pickerPart = Nothing }, Effect.none )
+
+        ChoosePickerFamily family ->
+            ( { model | pickerFamily = Just family, pickerPart = Nothing }, Effect.none )
+
+        ChoosePickerPart part ->
+            ( { model | pickerPart = Just part }, Effect.none )
+
+        PickCharacter character ->
+            ( { model | query = model.query ++ character, pickerOpen = False, pickerLayout = Nothing, pickerFamily = Nothing, pickerPart = Nothing }, Effect.none )
+
+        RestartCharacterPicker step ->
+            case step of
+                1 -> ( { model | pickerLayout = Nothing, pickerFamily = Nothing, pickerPart = Nothing }, Effect.none )
+                2 -> ( { model | pickerFamily = Nothing, pickerPart = Nothing }, Effect.none )
+                _ -> ( { model | pickerPart = Nothing }, Effect.none )
+
+        GotCharacterIndex value ->
+            case Decode.decodeValue InlinePicker.pickerIndexDecoder value of
+                Ok index ->
+                    ( { model | pickerCharacters = index.characters }, Effect.none )
+
+                Err _ ->
+                    ( model, Effect.none )
 
         SetPage newPage ->
             ( { model | currentPage = newPage }
@@ -206,6 +261,7 @@ subscriptions model =
     Sub.batch
         [ Ports.receiveSearchResults GotResults
         , Ports.receiveNotebook GotNotebookData
+        , Ports.receiveCharacterIndex GotCharacterIndex
         ]
 
 
@@ -250,8 +306,11 @@ view model =
                         , value model.query
                         , onInput UpdateQuery
                         ] []
+                    , if model.activeLanguage == Korean then text "" else button [ class "search-character-trigger", onClick ToggleCharacterPicker ] [ text (if model.activeLanguage == Japanese then "漢 Pick kanji" else "拼 Pick character") ]
                     , button [ onClick DoSearch ] [ text "Search" ]
                     ]
+
+                , if model.activeLanguage /= Korean then viewInlineCharacterPicker model else text ""
 
                 , div [ class "search-results" ]
                     (if List.isEmpty model.results then
@@ -271,6 +330,23 @@ view model =
             ]
         ]
     }
+
+
+viewInlineCharacterPicker : Model -> Html Msg
+viewInlineCharacterPicker model =
+    InlinePicker.view
+        { open = model.pickerOpen
+        , layout = model.pickerLayout
+        , family = model.pickerFamily
+        , part = model.pickerPart
+        , characters = model.pickerCharacters
+        , chooseLayout = ChoosePickerLayout
+        , chooseFamily = ChoosePickerFamily
+        , choosePart = ChoosePickerPart
+        , restartAt = RestartCharacterPicker
+        , pick = PickCharacter
+        , close = CloseCharacterPicker
+        }
 
 
 viewLanguageButton : Language -> Language -> Html Msg

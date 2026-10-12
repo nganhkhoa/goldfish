@@ -1,0 +1,3922 @@
+{
+  "indexedCharacters": 3500,
+  "uncovered": {
+    "topBottom": [
+      {
+        "component": "艹",
+        "characters": 81,
+        "examples": [
+          "菜",
+          "茶",
+          "花",
+          "草"
+        ]
+      },
+      {
+        "component": "口",
+        "characters": 22,
+        "examples": [
+          "号",
+          "哭",
+          "虽",
+          "只"
+        ]
+      },
+      {
+        "component": "雨",
+        "characters": 12,
+        "examples": [
+          "零",
+          "雪",
+          "需",
+          "雷"
+        ]
+      },
+      {
+        "component": "丿",
+        "characters": 9,
+        "examples": [
+          "么",
+          "系",
+          "千",
+          "血"
+        ]
+      },
+      {
+        "component": "尚",
+        "characters": 6,
+        "examples": [
+          "常",
+          "堂",
+          "赏",
+          "尝"
+        ]
+      },
+      {
+        "component": "⺊",
+        "characters": 6,
+        "examples": [
+          "上",
+          "占",
+          "卤",
+          "贞"
+        ]
+      },
+      {
+        "component": "亦",
+        "characters": 6,
+        "examples": [
+          "变",
+          "弯",
+          "恋",
+          "弈"
+        ]
+      },
+      {
+        "component": "厶",
+        "characters": 6,
+        "examples": [
+          "参",
+          "台",
+          "允",
+          "矣"
+        ]
+      },
+      {
+        "component": "亡",
+        "characters": 5,
+        "examples": [
+          "忘",
+          "望",
+          "盲",
+          "妄"
+        ]
+      },
+      {
+        "component": "丶",
+        "characters": 5,
+        "examples": [
+          "广",
+          "主",
+          "户",
+          "良"
+        ]
+      },
+      {
+        "component": "龶",
+        "characters": 5,
+        "examples": [
+          "青",
+          "责",
+          "毒",
+          "素"
+        ]
+      },
+      {
+        "component": "林",
+        "characters": 5,
+        "examples": [
+          "楚",
+          "禁",
+          "梦",
+          "焚"
+        ]
+      },
+      {
+        "component": "次",
+        "characters": 5,
+        "examples": [
+          "资",
+          "盗",
+          "咨",
+          "瓷"
+        ]
+      },
+      {
+        "component": "莫",
+        "characters": 5,
+        "examples": [
+          "幕",
+          "墓",
+          "募",
+          "慕"
+        ]
+      },
+      {
+        "component": "父",
+        "characters": 4,
+        "examples": [
+          "爸",
+          "爷",
+          "爹",
+          "斧"
+        ]
+      },
+      {
+        "component": "覀",
+        "characters": 4,
+        "examples": [
+          "票",
+          "要",
+          "覆",
+          "贾"
+        ]
+      },
+      {
+        "component": "执",
+        "characters": 4,
+        "examples": [
+          "热",
+          "势",
+          "挚",
+          "垫"
+        ]
+      },
+      {
+        "component": "木",
+        "characters": 4,
+        "examples": [
+          "查",
+          "李",
+          "森",
+          "杰"
+        ]
+      },
+      {
+        "component": "加",
+        "characters": 4,
+        "examples": [
+          "架",
+          "贺",
+          "驾",
+          "哿"
+        ]
+      },
+      {
+        "component": "今",
+        "characters": 4,
+        "examples": [
+          "念",
+          "含",
+          "贪",
+          "侌"
+        ]
+      },
+      {
+        "component": "彐",
+        "characters": 4,
+        "examples": [
+          "录",
+          "寻",
+          "灵",
+          "隶"
+        ]
+      },
+      {
+        "component": "士",
+        "characters": 4,
+        "examples": [
+          "志",
+          "壶",
+          "吉",
+          "壳"
+        ]
+      },
+      {
+        "component": "比",
+        "characters": 4,
+        "examples": [
+          "毕",
+          "皆",
+          "毙",
+          "坒"
+        ]
+      },
+      {
+        "component": "丘",
+        "characters": 4,
+        "examples": [
+          "兵",
+          "乒",
+          "乓",
+          "岳"
+        ]
+      },
+      {
+        "component": "丬",
+        "characters": 4,
+        "examples": [
+          "奖",
+          "酱",
+          "桨",
+          "浆"
+        ]
+      },
+      {
+        "component": "龹",
+        "characters": 4,
+        "examples": [
+          "卷",
+          "券",
+          "拳",
+          "劵"
+        ]
+      },
+      {
+        "component": "白",
+        "characters": 4,
+        "examples": [
+          "泉",
+          "皇",
+          "卑",
+          "皂"
+        ]
+      },
+      {
+        "component": "辟",
+        "characters": 4,
+        "examples": [
+          "壁",
+          "劈",
+          "譬",
+          "臂"
+        ]
+      },
+      {
+        "component": "分",
+        "characters": 4,
+        "examples": [
+          "盆",
+          "贫",
+          "岔",
+          "坌"
+        ]
+      },
+      {
+        "component": "乛",
+        "characters": 3,
+        "examples": [
+          "了",
+          "买",
+          "卫"
+        ]
+      },
+      {
+        "component": "此",
+        "characters": 3,
+        "examples": [
+          "些",
+          "柴",
+          "紫"
+        ]
+      },
+      {
+        "component": "自",
+        "characters": 3,
+        "examples": [
+          "息",
+          "鼻",
+          "臭"
+        ]
+      },
+      {
+        "component": "二",
+        "characters": 3,
+        "examples": [
+          "元",
+          "示",
+          "云"
+        ]
+      },
+      {
+        "component": "音",
+        "characters": 3,
+        "examples": [
+          "意",
+          "章",
+          "竟"
+        ]
+      },
+      {
+        "component": "⺌",
+        "characters": 3,
+        "examples": [
+          "当",
+          "光",
+          "肖"
+        ]
+      },
+      {
+        "component": "六",
+        "characters": 3,
+        "examples": [
+          "交",
+          "兖",
+          "兗"
+        ]
+      },
+      {
+        "component": "亼",
+        "characters": 3,
+        "examples": [
+          "合",
+          "侖",
+          "俞"
+        ]
+      },
+      {
+        "component": "甘",
+        "characters": 3,
+        "examples": [
+          "其",
+          "某",
+          "甚"
+        ]
+      },
+      {
+        "component": "不",
+        "characters": 3,
+        "examples": [
+          "否",
+          "歪",
+          "丕"
+        ]
+      },
+      {
+        "component": "隹",
+        "characters": 3,
+        "examples": [
+          "集",
+          "售",
+          "焦"
+        ]
+      },
+      {
+        "component": "亚",
+        "characters": 3,
+        "examples": [
+          "恶",
+          "晋",
+          "垩"
+        ]
+      },
+      {
+        "component": "又",
+        "characters": 3,
+        "examples": [
+          "圣",
+          "叒",
+          "叕"
+        ]
+      },
+      {
+        "component": "龙",
+        "characters": 3,
+        "examples": [
+          "袭",
+          "聋",
+          "垄"
+        ]
+      },
+      {
+        "component": "臼",
+        "characters": 3,
+        "examples": [
+          "舅",
+          "兒",
+          "叟"
+        ]
+      },
+      {
+        "component": "中",
+        "characters": 2,
+        "examples": [
+          "贵",
+          "忠"
+        ]
+      },
+      {
+        "component": "冂",
+        "characters": 2,
+        "examples": [
+          "口",
+          "囗"
+        ]
+      },
+      {
+        "component": "合",
+        "characters": 2,
+        "examples": [
+          "拿",
+          "盒"
+        ]
+      },
+      {
+        "component": "壴",
+        "characters": 2,
+        "examples": [
+          "喜",
+          "嘉"
+        ]
+      },
+      {
+        "component": "北",
+        "characters": 2,
+        "examples": [
+          "背",
+          "冀"
+        ]
+      },
+      {
+        "component": "月",
+        "characters": 2,
+        "examples": [
+          "且",
+          "祭"
+        ]
+      },
+      {
+        "component": "兴",
+        "characters": 2,
+        "examples": [
+          "举",
+          "誉"
+        ]
+      },
+      {
+        "component": "卯",
+        "characters": 2,
+        "examples": [
+          "留",
+          "贸"
+        ]
+      },
+      {
+        "component": "奴",
+        "characters": 2,
+        "examples": [
+          "努",
+          "怒"
+        ]
+      },
+      {
+        "component": "少",
+        "characters": 2,
+        "examples": [
+          "省",
+          "劣"
+        ]
+      },
+      {
+        "component": "巳",
+        "characters": 2,
+        "examples": [
+          "导",
+          "异"
+        ]
+      },
+      {
+        "component": "九",
+        "characters": 2,
+        "examples": [
+          "杂",
+          "厹"
+        ]
+      },
+      {
+        "component": "化",
+        "characters": 2,
+        "examples": [
+          "华",
+          "货"
+        ]
+      },
+      {
+        "component": "敬",
+        "characters": 2,
+        "examples": [
+          "警",
+          "擎"
+        ]
+      },
+      {
+        "component": "米",
+        "characters": 2,
+        "examples": [
+          "类",
+          "粪"
+        ]
+      },
+      {
+        "component": "列",
+        "characters": 2,
+        "examples": [
+          "烈",
+          "裂"
+        ]
+      },
+      {
+        "component": "乂",
+        "characters": 2,
+        "examples": [
+          "希",
+          "杀"
+        ]
+      },
+      {
+        "component": "攸",
+        "characters": 2,
+        "examples": [
+          "修",
+          "悠"
+        ]
+      },
+      {
+        "component": "宓",
+        "characters": 2,
+        "examples": [
+          "密",
+          "蜜"
+        ]
+      },
+      {
+        "component": "代",
+        "characters": 2,
+        "examples": [
+          "袋",
+          "贷"
+        ]
+      },
+      {
+        "component": "取",
+        "characters": 2,
+        "examples": [
+          "聚",
+          "娶"
+        ]
+      },
+      {
+        "component": "水",
+        "characters": 2,
+        "examples": [
+          "益",
+          "梁"
+        ]
+      },
+      {
+        "component": "刀",
+        "characters": 2,
+        "examples": [
+          "召",
+          "竖"
+        ]
+      },
+      {
+        "component": "非",
+        "characters": 2,
+        "examples": [
+          "悲",
+          "辈"
+        ]
+      },
+      {
+        "component": "王",
+        "characters": 2,
+        "examples": [
+          "丢",
+          "丟"
+        ]
+      },
+      {
+        "component": "前",
+        "characters": 2,
+        "examples": [
+          "剪",
+          "煎"
+        ]
+      },
+      {
+        "component": "止",
+        "characters": 2,
+        "examples": [
+          "肯",
+          "齿"
+        ]
+      },
+      {
+        "component": "任",
+        "characters": 2,
+        "examples": [
+          "凭",
+          "赁"
+        ]
+      },
+      {
+        "component": "高",
+        "characters": 2,
+        "examples": [
+          "豪",
+          "膏"
+        ]
+      },
+      {
+        "component": "酋",
+        "characters": 2,
+        "examples": [
+          "尊",
+          "奠"
+        ]
+      },
+      {
+        "component": "折",
+        "characters": 2,
+        "examples": [
+          "哲",
+          "誓"
+        ]
+      },
+      {
+        "component": "保",
+        "characters": 2,
+        "examples": [
+          "煲",
+          "堡"
+        ]
+      },
+      {
+        "component": "敝",
+        "characters": 2,
+        "examples": [
+          "弊",
+          "憋"
+        ]
+      },
+      {
+        "component": "羽",
+        "characters": 2,
+        "examples": [
+          "翼",
+          "翠"
+        ]
+      },
+      {
+        "component": "叒",
+        "characters": 2,
+        "examples": [
+          "桑",
+          "叠"
+        ]
+      },
+      {
+        "component": "艮",
+        "characters": 2,
+        "examples": [
+          "恳",
+          "垦"
+        ]
+      },
+      {
+        "component": "从",
+        "characters": 2,
+        "examples": [
+          "丛",
+          "耸"
+        ]
+      },
+      {
+        "component": "共",
+        "characters": 2,
+        "examples": [
+          "巷",
+          "恭"
+        ]
+      },
+      {
+        "component": "如",
+        "characters": 2,
+        "examples": [
+          "恕",
+          "絮"
+        ]
+      },
+      {
+        "component": "文",
+        "characters": 2,
+        "examples": [
+          "紊",
+          "吝"
+        ]
+      },
+      {
+        "component": "廿",
+        "characters": 2,
+        "examples": [
+          "昔",
+          "燕"
+        ]
+      },
+      {
+        "component": "户",
+        "characters": 2,
+        "examples": [
+          "肇",
+          "啓"
+        ]
+      },
+      {
+        "component": "夭",
+        "characters": 2,
+        "examples": [
+          "呑",
+          "喬"
+        ]
+      },
+      {
+        "component": "邦",
+        "characters": 1,
+        "examples": [
+          "帮"
+        ]
+      },
+      {
+        "component": "旦",
+        "characters": 1,
+        "examples": [
+          "量"
+        ]
+      },
+      {
+        "component": "屮",
+        "characters": 1,
+        "examples": [
+          "出"
+        ]
+      },
+      {
+        "component": "占",
+        "characters": 1,
+        "examples": [
+          "点"
+        ]
+      },
+      {
+        "component": "夕",
+        "characters": 1,
+        "examples": [
+          "多"
+        ]
+      },
+      {
+        "component": "牛",
+        "characters": 1,
+        "examples": [
+          "告"
+        ]
+      },
+      {
+        "component": "可",
+        "characters": 1,
+        "examples": [
+          "哥"
+        ]
+      },
+      {
+        "component": "手",
+        "characters": 1,
+        "examples": [
+          "看"
+        ]
+      },
+      {
+        "component": "疋",
+        "characters": 1,
+        "examples": [
+          "蛋"
+        ]
+      },
+      {
+        "component": "耂",
+        "characters": 1,
+        "examples": [
+          "老"
+        ]
+      },
+      {
+        "component": "你",
+        "characters": 1,
+        "examples": [
+          "您"
+        ]
+      },
+      {
+        "component": "直",
+        "characters": 1,
+        "examples": [
+          "真"
+        ]
+      },
+      {
+        "component": "相",
+        "characters": 1,
+        "examples": [
+          "想"
+        ]
+      },
+      {
+        "component": "乍",
+        "characters": 1,
+        "examples": [
+          "怎"
+        ]
+      },
+      {
+        "component": "卓",
+        "characters": 1,
+        "examples": [
+          "桌"
+        ]
+      },
+      {
+        "component": "毛",
+        "characters": 1,
+        "examples": [
+          "表"
+        ]
+      },
+      {
+        "component": "曲",
+        "characters": 1,
+        "examples": [
+          "典"
+        ]
+      },
+      {
+        "component": "肰",
+        "characters": 1,
+        "examples": [
+          "然"
+        ]
+      },
+      {
+        "component": "卅",
+        "characters": 1,
+        "examples": [
+          "带"
+        ]
+      },
+      {
+        "component": "咸",
+        "characters": 1,
+        "examples": [
+          "感"
+        ]
+      },
+      {
+        "component": "勿",
+        "characters": 1,
+        "examples": [
+          "忽"
+        ]
+      },
+      {
+        "component": "昭",
+        "characters": 1,
+        "examples": [
+          "照"
+        ]
+      },
+      {
+        "component": "刍",
+        "characters": 1,
+        "examples": [
+          "急"
+        ]
+      },
+      {
+        "component": "上",
+        "characters": 1,
+        "examples": [
+          "卡"
+        ]
+      },
+      {
+        "component": "告",
+        "characters": 1,
+        "examples": [
+          "靠"
+        ]
+      },
+      {
+        "component": "歺",
+        "characters": 1,
+        "examples": [
+          "餐"
+        ]
+      },
+      {
+        "component": "玉",
+        "characters": 1,
+        "examples": [
+          "弄"
+        ]
+      },
+      {
+        "component": "並",
+        "characters": 1,
+        "examples": [
+          "普"
+        ]
+      },
+      {
+        "component": "孰",
+        "characters": 1,
+        "examples": [
+          "熟"
+        ]
+      },
+      {
+        "component": "太",
+        "characters": 1,
+        "examples": [
+          "态"
+        ]
+      },
+      {
+        "component": "壮",
+        "characters": 1,
+        "examples": [
+          "装"
+        ]
+      },
+      {
+        "component": "弗",
+        "characters": 1,
+        "examples": [
+          "费"
+        ]
+      },
+      {
+        "component": "目",
+        "characters": 1,
+        "examples": [
+          "具"
+        ]
+      },
+      {
+        "component": "其",
+        "characters": 1,
+        "examples": [
+          "基"
+        ]
+      },
+      {
+        "component": "巩",
+        "characters": 1,
+        "examples": [
+          "恐"
+        ]
+      },
+      {
+        "component": "敕",
+        "characters": 1,
+        "examples": [
+          "整"
+        ]
+      },
+      {
+        "component": "無",
+        "characters": 1,
+        "examples": [
+          "舞"
+        ]
+      },
+      {
+        "component": "厃",
+        "characters": 1,
+        "examples": [
+          "危"
+        ]
+      },
+      {
+        "component": "兟",
+        "characters": 1,
+        "examples": [
+          "赞"
+        ]
+      },
+      {
+        "component": "安",
+        "characters": 1,
+        "examples": [
+          "案"
+        ]
+      },
+      {
+        "component": "刑",
+        "characters": 1,
+        "examples": [
+          "型"
+        ]
+      },
+      {
+        "component": "夫",
+        "characters": 1,
+        "examples": [
+          "替"
+        ]
+      },
+      {
+        "component": "癶",
+        "characters": 1,
+        "examples": [
+          "登"
+        ]
+      },
+      {
+        "component": "舟",
+        "characters": 1,
+        "examples": [
+          "盘"
+        ]
+      },
+      {
+        "component": "波",
+        "characters": 1,
+        "examples": [
+          "婆"
+        ]
+      },
+      {
+        "component": "朔",
+        "characters": 1,
+        "examples": [
+          "塑"
+        ]
+      },
+      {
+        "component": "且",
+        "characters": 1,
+        "examples": [
+          "县"
+        ]
+      },
+      {
+        "component": "圤",
+        "characters": 1,
+        "examples": [
+          "盐"
+        ]
+      },
+      {
+        "component": "甬",
+        "characters": 1,
+        "examples": [
+          "勇"
+        ]
+      },
+      {
+        "component": "知",
+        "characters": 1,
+        "examples": [
+          "智"
+        ]
+      },
+      {
+        "component": "尉",
+        "characters": 1,
+        "examples": [
+          "慰"
+        ]
+      },
+      {
+        "component": "夗",
+        "characters": 1,
+        "examples": [
+          "怨"
+        ]
+      },
+      {
+        "component": "秋",
+        "characters": 1,
+        "examples": [
+          "愁"
+        ]
+      },
+      {
+        "component": "能",
+        "characters": 1,
+        "examples": [
+          "熊"
+        ]
+      },
+      {
+        "component": "几",
+        "characters": 1,
+        "examples": [
+          "朵"
+        ]
+      },
+      {
+        "component": "敏",
+        "characters": 1,
+        "examples": [
+          "繁"
+        ]
+      },
+      {
+        "component": "玨",
+        "characters": 1,
+        "examples": [
+          "琴"
+        ]
+      },
+      {
+        "component": "利",
+        "characters": 1,
+        "examples": [
+          "梨"
+        ]
+      },
+      {
+        "component": "氿",
+        "characters": 1,
+        "examples": [
+          "染"
+        ]
+      },
+      {
+        "component": "刃",
+        "characters": 1,
+        "examples": [
+          "忍"
+        ]
+      },
+      {
+        "component": "釆",
+        "characters": 1,
+        "examples": [
+          "悉"
+        ]
+      },
+      {
+        "component": "斩",
+        "characters": 1,
+        "examples": [
+          "暂"
+        ]
+      },
+      {
+        "component": "成",
+        "characters": 1,
+        "examples": [
+          "盛"
+        ]
+      },
+      {
+        "component": "因",
+        "characters": 1,
+        "examples": [
+          "恩"
+        ]
+      },
+      {
+        "component": "火",
+        "characters": 1,
+        "examples": [
+          "炎"
+        ]
+      },
+      {
+        "component": "工",
+        "characters": 1,
+        "examples": [
+          "贡"
+        ]
+      },
+      {
+        "component": "串",
+        "characters": 1,
+        "examples": [
+          "患"
+        ]
+      },
+      {
+        "component": "氏",
+        "characters": 1,
+        "examples": [
+          "昏"
+        ]
+      },
+      {
+        "component": "叔",
+        "characters": 1,
+        "examples": [
+          "督"
+        ]
+      },
+      {
+        "component": "明",
+        "characters": 1,
+        "examples": [
+          "盟"
+        ]
+      },
+      {
+        "component": "黑",
+        "characters": 1,
+        "examples": [
+          "墨"
+        ]
+      },
+      {
+        "component": "洰",
+        "characters": 1,
+        "examples": [
+          "渠"
+        ]
+      },
+      {
+        "component": "千",
+        "characters": 1,
+        "examples": [
+          "舌"
+        ]
+      },
+      {
+        "component": "天",
+        "characters": 1,
+        "examples": [
+          "吞"
+        ]
+      },
+      {
+        "component": "县",
+        "characters": 1,
+        "examples": [
+          "悬"
+        ]
+      },
+      {
+        "component": "毌",
+        "characters": 1,
+        "examples": [
+          "贯"
+        ]
+      },
+      {
+        "component": "彗",
+        "characters": 1,
+        "examples": [
+          "慧"
+        ]
+      },
+      {
+        "component": "者",
+        "characters": 1,
+        "examples": [
+          "煮"
+        ]
+      },
+      {
+        "component": "敖",
+        "characters": 1,
+        "examples": [
+          "熬"
+        ]
+      },
+      {
+        "component": "厽",
+        "characters": 1,
+        "examples": [
+          "垒"
+        ]
+      },
+      {
+        "component": "珀",
+        "characters": 1,
+        "examples": [
+          "碧"
+        ]
+      },
+      {
+        "component": "野",
+        "characters": 1,
+        "examples": [
+          "墅"
+        ]
+      },
+      {
+        "component": "征",
+        "characters": 1,
+        "examples": [
+          "惩"
+        ]
+      },
+      {
+        "component": "春",
+        "characters": 1,
+        "examples": [
+          "蠢"
+        ]
+      },
+      {
+        "component": "兹",
+        "characters": 1,
+        "examples": [
+          "慈"
+        ]
+      },
+      {
+        "component": "鱼",
+        "characters": 1,
+        "examples": [
+          "鲁"
+        ]
+      },
+      {
+        "component": "台",
+        "characters": 1,
+        "examples": [
+          "怠"
+        ]
+      },
+      {
+        "component": "登",
+        "characters": 1,
+        "examples": [
+          "凳"
+        ]
+      },
+      {
+        "component": "己",
+        "characters": 1,
+        "examples": [
+          "忌"
+        ]
+      },
+      {
+        "component": "陏",
+        "characters": 1,
+        "examples": [
+          "堕"
+        ]
+      },
+      {
+        "component": "公",
+        "characters": 1,
+        "examples": [
+          "翁"
+        ]
+      },
+      {
+        "component": "古",
+        "characters": 1,
+        "examples": [
+          "辜"
+        ]
+      },
+      {
+        "component": "石",
+        "characters": 1,
+        "examples": [
+          "磊"
+        ]
+      },
+      {
+        "component": "⺳",
+        "characters": 1,
+        "examples": [
+          "罕"
+        ]
+      },
+      {
+        "component": "车",
+        "characters": 1,
+        "examples": [
+          "轰"
+        ]
+      },
+      {
+        "component": "衣",
+        "characters": 1,
+        "examples": [
+          "裔"
+        ]
+      },
+      {
+        "component": "乃",
+        "characters": 1,
+        "examples": [
+          "孕"
+        ]
+      },
+      {
+        "component": "芒",
+        "characters": 1,
+        "examples": [
+          "荒"
+        ]
+      },
+      {
+        "component": "或",
+        "characters": 1,
+        "examples": [
+          "惑"
+        ]
+      },
+      {
+        "component": "丰",
+        "characters": 1,
+        "examples": [
+          "契"
+        ]
+      },
+      {
+        "component": "巛",
+        "characters": 1,
+        "examples": [
+          "巢"
+        ]
+      },
+      {
+        "component": "樊",
+        "characters": 1,
+        "examples": [
+          "攀"
+        ]
+      },
+      {
+        "component": "亨",
+        "characters": 1,
+        "examples": [
+          "烹"
+        ]
+      },
+      {
+        "component": "斤",
+        "characters": 1,
+        "examples": [
+          "丘"
+        ]
+      },
+      {
+        "component": "若",
+        "characters": 1,
+        "examples": [
+          "惹"
+        ]
+      },
+      {
+        "component": "矛",
+        "characters": 1,
+        "examples": [
+          "柔"
+        ]
+      },
+      {
+        "component": "沙",
+        "characters": 1,
+        "examples": [
+          "鲨"
+        ]
+      },
+      {
+        "component": "玄",
+        "characters": 1,
+        "examples": [
+          "畜"
+        ]
+      },
+      {
+        "component": "髟",
+        "characters": 1,
+        "examples": [
+          "髦"
+        ]
+      },
+      {
+        "component": "而",
+        "characters": 1,
+        "examples": [
+          "耍"
+        ]
+      },
+      {
+        "component": "汤",
+        "characters": 1,
+        "examples": [
+          "烫"
+        ]
+      },
+      {
+        "component": "殸",
+        "characters": 1,
+        "examples": [
+          "馨"
+        ]
+      },
+      {
+        "component": "巸",
+        "characters": 1,
+        "examples": [
+          "熙"
+        ]
+      },
+      {
+        "component": "队",
+        "characters": 1,
+        "examples": [
+          "坠"
+        ]
+      },
+      {
+        "component": "贝",
+        "characters": 1,
+        "examples": [
+          "婴"
+        ]
+      },
+      {
+        "component": "夃",
+        "characters": 1,
+        "examples": [
+          "盈"
+        ]
+      },
+      {
+        "component": "禺",
+        "characters": 1,
+        "examples": [
+          "愚"
+        ]
+      },
+      {
+        "component": "俞",
+        "characters": 1,
+        "examples": [
+          "愈"
+        ]
+      },
+      {
+        "component": "朿",
+        "characters": 1,
+        "examples": [
+          "枣"
+        ]
+      },
+      {
+        "component": "戋",
+        "characters": 1,
+        "examples": [
+          "盏"
+        ]
+      },
+      {
+        "component": "久",
+        "characters": 1,
+        "examples": [
+          "灸"
+        ]
+      },
+      {
+        "component": "匕",
+        "characters": 1,
+        "examples": [
+          "旨"
+        ]
+      },
+      {
+        "component": "丨",
+        "characters": 1,
+        "examples": [
+          "丄"
+        ]
+      },
+      {
+        "component": "氶",
+        "characters": 1,
+        "examples": [
+          "丞"
+        ]
+      },
+      {
+        "component": "业",
+        "characters": 1,
+        "examples": [
+          "丵"
+        ]
+      },
+      {
+        "component": "甫",
+        "characters": 1,
+        "examples": [
+          "乶"
+        ]
+      },
+      {
+        "component": "了",
+        "characters": 1,
+        "examples": [
+          "亟"
+        ]
+      },
+      {
+        "component": "凶",
+        "characters": 1,
+        "examples": [
+          "兇"
+        ]
+      },
+      {
+        "component": "凹",
+        "characters": 1,
+        "examples": [
+          "兕"
+        ]
+      },
+      {
+        "component": "由",
+        "characters": 1,
+        "examples": [
+          "冑"
+        ]
+      },
+      {
+        "component": "井",
+        "characters": 1,
+        "examples": [
+          "冓"
+        ]
+      },
+      {
+        "component": "鸟",
+        "characters": 1,
+        "examples": [
+          "凫"
+        ]
+      },
+      {
+        "component": "力",
+        "characters": 1,
+        "examples": [
+          "劦"
+        ]
+      },
+      {
+        "component": "埶",
+        "characters": 1,
+        "examples": [
+          "勢"
+        ]
+      },
+      {
+        "component": "丞",
+        "characters": 1,
+        "examples": [
+          "卺"
+        ]
+      },
+      {
+        "component": "丵",
+        "characters": 1,
+        "examples": [
+          "叢"
+        ]
+      },
+      {
+        "component": "五",
+        "characters": 1,
+        "examples": [
+          "吾"
+        ]
+      },
+      {
+        "component": "处",
+        "characters": 1,
+        "examples": [
+          "咎"
+        ]
+      },
+      {
+        "component": "帝",
+        "characters": 1,
+        "examples": [
+          "啻"
+        ]
+      },
+      {
+        "component": "品",
+        "characters": 1,
+        "examples": [
+          "喿"
+        ]
+      },
+      {
+        "component": "坐",
+        "characters": 1,
+        "examples": [
+          "嗇"
+        ]
+      },
+      {
+        "component": "鄉",
+        "characters": 1,
+        "examples": [
+          "嚮"
+        ]
+      },
+      {
+        "component": "西",
+        "characters": 1,
+        "examples": [
+          "垔"
+        ]
+      },
+      {
+        "component": "伐",
+        "characters": 1,
+        "examples": [
+          "垡"
+        ]
+      }
+    ],
+    "leftRight": [
+      {
+        "component": "龺",
+        "characters": 4,
+        "examples": [
+          "朝",
+          "乹",
+          "乾",
+          "倝"
+        ]
+      },
+      {
+        "component": "丬",
+        "characters": 4,
+        "examples": [
+          "将",
+          "状",
+          "壮",
+          "妆"
+        ]
+      },
+      {
+        "component": "其",
+        "characters": 3,
+        "examples": [
+          "期",
+          "欺",
+          "斯"
+        ]
+      },
+      {
+        "component": "古",
+        "characters": 3,
+        "examples": [
+          "故",
+          "胡",
+          "嘏"
+        ]
+      },
+      {
+        "component": "缶",
+        "characters": 3,
+        "examples": [
+          "缺",
+          "缸",
+          "罐"
+        ]
+      },
+      {
+        "component": "尸",
+        "characters": 3,
+        "examples": [
+          "刷",
+          "殿",
+          "辟"
+        ]
+      },
+      {
+        "component": "十",
+        "characters": 3,
+        "examples": [
+          "博",
+          "协",
+          "協"
+        ]
+      },
+      {
+        "component": "牙",
+        "characters": 3,
+        "examples": [
+          "邪",
+          "雅",
+          "鸦"
+        ]
+      },
+      {
+        "component": "开",
+        "characters": 2,
+        "examples": [
+          "形",
+          "刑"
+        ]
+      },
+      {
+        "component": "另",
+        "characters": 2,
+        "examples": [
+          "别",
+          "別"
+        ]
+      },
+      {
+        "component": "白",
+        "characters": 2,
+        "examples": [
+          "的",
+          "魄"
+        ]
+      },
+      {
+        "component": "至",
+        "characters": 2,
+        "examples": [
+          "到",
+          "致"
+        ]
+      },
+      {
+        "component": "丿",
+        "characters": 2,
+        "examples": [
+          "儿",
+          "几"
+        ]
+      },
+      {
+        "component": "方",
+        "characters": 2,
+        "examples": [
+          "放",
+          "施"
+        ]
+      },
+      {
+        "component": "丁",
+        "characters": 2,
+        "examples": [
+          "成",
+          "顶"
+        ]
+      },
+      {
+        "component": "句",
+        "characters": 2,
+        "examples": [
+          "够",
+          "劬"
+        ]
+      },
+      {
+        "component": "咅",
+        "characters": 2,
+        "examples": [
+          "部",
+          "剖"
+        ]
+      },
+      {
+        "component": "圭",
+        "characters": 2,
+        "examples": [
+          "封",
+          "卦"
+        ]
+      },
+      {
+        "component": "亥",
+        "characters": 2,
+        "examples": [
+          "刻",
+          "劾"
+        ]
+      },
+      {
+        "component": "角",
+        "characters": 2,
+        "examples": [
+          "解",
+          "触"
+        ]
+      },
+      {
+        "component": "片",
+        "characters": 2,
+        "examples": [
+          "牌",
+          "版"
+        ]
+      },
+      {
+        "component": "丨",
+        "characters": 2,
+        "examples": [
+          "旧",
+          "刂"
+        ]
+      },
+      {
+        "component": "半",
+        "characters": 2,
+        "examples": [
+          "判",
+          "叛"
+        ]
+      },
+      {
+        "component": "予",
+        "characters": 2,
+        "examples": [
+          "预",
+          "豫"
+        ]
+      },
+      {
+        "component": "朿",
+        "characters": 2,
+        "examples": [
+          "刺",
+          "棘"
+        ]
+      },
+      {
+        "component": "去",
+        "characters": 2,
+        "examples": [
+          "却",
+          "劫"
+        ]
+      },
+      {
+        "component": "占",
+        "characters": 2,
+        "examples": [
+          "战",
+          "乩"
+        ]
+      },
+      {
+        "component": "良",
+        "characters": 2,
+        "examples": [
+          "郎",
+          "朗"
+        ]
+      },
+      {
+        "component": "豸",
+        "characters": 2,
+        "examples": [
+          "貌",
+          "豹"
+        ]
+      },
+      {
+        "component": "丰",
+        "characters": 2,
+        "examples": [
+          "艳",
+          "邦"
+        ]
+      },
+      {
+        "component": "余",
+        "characters": 2,
+        "examples": [
+          "斜",
+          "叙"
+        ]
+      },
+      {
+        "component": "佥",
+        "characters": 2,
+        "examples": [
+          "剑",
+          "敛"
+        ]
+      },
+      {
+        "component": "谷",
+        "characters": 2,
+        "examples": [
+          "欲",
+          "卻"
+        ]
+      },
+      {
+        "component": "耒",
+        "characters": 2,
+        "examples": [
+          "耗",
+          "耕"
+        ]
+      },
+      {
+        "component": "害",
+        "characters": 2,
+        "examples": [
+          "割",
+          "豁"
+        ]
+      },
+      {
+        "component": "克",
+        "characters": 2,
+        "examples": [
+          "兢",
+          "剋"
+        ]
+      },
+      {
+        "component": "岂",
+        "characters": 2,
+        "examples": [
+          "凯",
+          "剀"
+        ]
+      },
+      {
+        "component": "票",
+        "characters": 2,
+        "examples": [
+          "飘",
+          "剽"
+        ]
+      },
+      {
+        "component": "杀",
+        "characters": 2,
+        "examples": [
+          "刹",
+          "剎"
+        ]
+      },
+      {
+        "component": "血",
+        "characters": 2,
+        "examples": [
+          "衅",
+          "卹"
+        ]
+      },
+      {
+        "component": "夸",
+        "characters": 2,
+        "examples": [
+          "刳",
+          "匏"
+        ]
+      },
+      {
+        "component": "巢",
+        "characters": 2,
+        "examples": [
+          "剿",
+          "勦"
+        ]
+      },
+      {
+        "component": "吉",
+        "characters": 2,
+        "examples": [
+          "劼",
+          "喆"
+        ]
+      },
+      {
+        "component": "畐",
+        "characters": 1,
+        "examples": [
+          "副"
+        ]
+      },
+      {
+        "component": "哥",
+        "characters": 1,
+        "examples": [
+          "歌"
+        ]
+      },
+      {
+        "component": "景",
+        "characters": 1,
+        "examples": [
+          "影"
+        ]
+      },
+      {
+        "component": "者",
+        "characters": 1,
+        "examples": [
+          "都"
+        ]
+      },
+      {
+        "component": "夕",
+        "characters": 1,
+        "examples": [
+          "外"
+        ]
+      },
+      {
+        "component": "孝",
+        "characters": 1,
+        "examples": [
+          "教"
+        ]
+      },
+      {
+        "component": "京",
+        "characters": 1,
+        "examples": [
+          "就"
+        ]
+      },
+      {
+        "component": "娄",
+        "characters": 1,
+        "examples": [
+          "数"
+        ]
+      },
+      {
+        "component": "厶",
+        "characters": 1,
+        "examples": [
+          "能"
+        ]
+      },
+      {
+        "component": "亲",
+        "characters": 1,
+        "examples": [
+          "新"
+        ]
+      },
+      {
+        "component": "青",
+        "characters": 1,
+        "examples": [
+          "静"
+        ]
+      },
+      {
+        "component": "彡",
+        "characters": 1,
+        "examples": [
+          "须"
+        ]
+      },
+      {
+        "component": "己",
+        "characters": 1,
+        "examples": [
+          "改"
+        ]
+      },
+      {
+        "component": "冈",
+        "characters": 1,
+        "examples": [
+          "刚"
+        ]
+      },
+      {
+        "component": "厄",
+        "characters": 1,
+        "examples": [
+          "顾"
+        ]
+      },
+      {
+        "component": "戈",
+        "characters": 1,
+        "examples": [
+          "划"
+        ]
+      },
+      {
+        "component": "并",
+        "characters": 1,
+        "examples": [
+          "瓶"
+        ]
+      },
+      {
+        "component": "丩",
+        "characters": 1,
+        "examples": [
+          "收"
+        ]
+      },
+      {
+        "component": "舍",
+        "characters": 1,
+        "examples": [
+          "舒"
+        ]
+      },
+      {
+        "component": "川",
+        "characters": 1,
+        "examples": [
+          "顺"
+        ]
+      },
+      {
+        "component": "户",
+        "characters": 1,
+        "examples": [
+          "所"
+        ]
+      },
+      {
+        "component": "彦",
+        "characters": 1,
+        "examples": [
+          "颜"
+        ]
+      },
+      {
+        "component": "采",
+        "characters": 1,
+        "examples": [
+          "彩"
+        ]
+      },
+      {
+        "component": "仓",
+        "characters": 1,
+        "examples": [
+          "创"
+        ]
+      },
+      {
+        "component": "居",
+        "characters": 1,
+        "examples": [
+          "剧"
+        ]
+      },
+      {
+        "component": "由",
+        "characters": 1,
+        "examples": [
+          "邮"
+        ]
+      },
+      {
+        "component": "屯",
+        "characters": 1,
+        "examples": [
+          "顿"
+        ]
+      },
+      {
+        "component": "夫",
+        "characters": 1,
+        "examples": [
+          "规"
+        ]
+      },
+      {
+        "component": "求",
+        "characters": 1,
+        "examples": [
+          "救"
+        ]
+      },
+      {
+        "component": "七",
+        "characters": 1,
+        "examples": [
+          "切"
+        ]
+      },
+      {
+        "component": "君",
+        "characters": 1,
+        "examples": [
+          "群"
+        ]
+      },
+      {
+        "component": "黑",
+        "characters": 1,
+        "examples": [
+          "默"
+        ]
+      },
+      {
+        "component": "番",
+        "characters": 1,
+        "examples": [
+          "翻"
+        ]
+      },
+      {
+        "component": "辛",
+        "characters": 1,
+        "examples": [
+          "辣"
+        ]
+      },
+      {
+        "component": "上",
+        "characters": 1,
+        "examples": [
+          "叔"
+        ]
+      },
+      {
+        "component": "幺",
+        "characters": 1,
+        "examples": [
+          "幼"
+        ]
+      },
+      {
+        "component": "正",
+        "characters": 1,
+        "examples": [
+          "政"
+        ]
+      },
+      {
+        "component": "而",
+        "characters": 1,
+        "examples": [
+          "耐"
+        ]
+      },
+      {
+        "component": "士",
+        "characters": 1,
+        "examples": [
+          "款"
+        ]
+      },
+      {
+        "component": "壴",
+        "characters": 1,
+        "examples": [
+          "鼓"
+        ]
+      },
+      {
+        "component": "厉",
+        "characters": 1,
+        "examples": [
+          "励"
+        ]
+      },
+      {
+        "component": "每",
+        "characters": 1,
+        "examples": [
+          "敏"
+        ]
+      },
+      {
+        "component": "甲",
+        "characters": 1,
+        "examples": [
+          "鸭"
+        ]
+      },
+      {
+        "component": "果",
+        "characters": 1,
+        "examples": [
+          "颗"
+        ]
+      },
+      {
+        "component": "齿",
+        "characters": 1,
+        "examples": [
+          "龄"
+        ]
+      },
+      {
+        "component": "步",
+        "characters": 1,
+        "examples": [
+          "频"
+        ]
+      },
+      {
+        "component": "高",
+        "characters": 1,
+        "examples": [
+          "敲"
+        ]
+      },
+      {
+        "component": "堇",
+        "characters": 1,
+        "examples": [
+          "勤"
+        ]
+      },
+      {
+        "component": "乘",
+        "characters": 1,
+        "examples": [
+          "剩"
+        ]
+      },
+      {
+        "component": "臣",
+        "characters": 1,
+        "examples": [
+          "卧"
+        ]
+      },
+      {
+        "component": "南",
+        "characters": 1,
+        "examples": [
+          "献"
+        ]
+      },
+      {
+        "component": "曷",
+        "characters": 1,
+        "examples": [
+          "歇"
+        ]
+      },
+      {
+        "component": "斤",
+        "characters": 1,
+        "examples": [
+          "欣"
+        ]
+      },
+      {
+        "component": "厷",
+        "characters": 1,
+        "examples": [
+          "雄"
+        ]
+      },
+      {
+        "component": "习",
+        "characters": 1,
+        "examples": [
+          "羽"
+        ]
+      },
+      {
+        "component": "苟",
+        "characters": 1,
+        "examples": [
+          "敬"
+        ]
+      },
+      {
+        "component": "干",
+        "characters": 1,
+        "examples": [
+          "刊"
+        ]
+      },
+      {
+        "component": "兼",
+        "characters": 1,
+        "examples": [
+          "歉"
+        ]
+      },
+      {
+        "component": "申",
+        "characters": 1,
+        "examples": [
+          "畅"
+        ]
+      },
+      {
+        "component": "臼",
+        "characters": 1,
+        "examples": [
+          "毁"
+        ]
+      },
+      {
+        "component": "客",
+        "characters": 1,
+        "examples": [
+          "额"
+        ]
+      },
+      {
+        "component": "鬲",
+        "characters": 1,
+        "examples": [
+          "融"
+        ]
+      },
+      {
+        "component": "剌",
+        "characters": 1,
+        "examples": [
+          "赖"
+        ]
+      },
+      {
+        "component": "孚",
+        "characters": 1,
+        "examples": [
+          "乳"
+        ]
+      },
+      {
+        "component": "元",
+        "characters": 1,
+        "examples": [
+          "顽"
+        ]
+      },
+      {
+        "component": "里",
+        "characters": 1,
+        "examples": [
+          "野"
+        ]
+      },
+      {
+        "component": "分",
+        "characters": 1,
+        "examples": [
+          "颁"
+        ]
+      },
+      {
+        "component": "录",
+        "characters": 1,
+        "examples": [
+          "剥"
+        ]
+      },
+      {
+        "component": "啚",
+        "characters": 1,
+        "examples": [
+          "鄙"
+        ]
+      },
+      {
+        "component": "猋",
+        "characters": 1,
+        "examples": [
+          "飙"
+        ]
+      },
+      {
+        "component": "章",
+        "characters": 1,
+        "examples": [
+          "彰"
+        ]
+      },
+      {
+        "component": "林",
+        "characters": 1,
+        "examples": [
+          "彬"
+        ]
+      },
+      {
+        "component": "肖",
+        "characters": 1,
+        "examples": [
+          "削"
+        ]
+      },
+      {
+        "component": "亶",
+        "characters": 1,
+        "examples": [
+          "颤"
+        ]
+      },
+      {
+        "component": "尚",
+        "characters": 1,
+        "examples": [
+          "敞"
+        ]
+      },
+      {
+        "component": "翟",
+        "characters": 1,
+        "examples": [
+          "戳"
+        ]
+      },
+      {
+        "component": "镸",
+        "characters": 1,
+        "examples": [
+          "肆"
+        ]
+      },
+      {
+        "component": "真",
+        "characters": 1,
+        "examples": [
+          "颠"
+        ]
+      },
+      {
+        "component": "周",
+        "characters": 1,
+        "examples": [
+          "雕"
+        ]
+      },
+      {
+        "component": "享",
+        "characters": 1,
+        "examples": [
+          "敦"
+        ]
+      },
+      {
+        "component": "我",
+        "characters": 1,
+        "examples": [
+          "鹅"
+        ]
+      },
+      {
+        "component": "羊",
+        "characters": 1,
+        "examples": [
+          "翔"
+        ]
+      },
+      {
+        "component": "卵",
+        "characters": 1,
+        "examples": [
+          "孵"
+        ]
+      },
+      {
+        "component": "旉",
+        "characters": 1,
+        "examples": [
+          "敷"
+        ]
+      },
+      {
+        "component": "豙",
+        "characters": 1,
+        "examples": [
+          "毅"
+        ]
+      },
+      {
+        "component": "合",
+        "characters": 1,
+        "examples": [
+          "鸽"
+        ]
+      },
+      {
+        "component": "公",
+        "characters": 1,
+        "examples": [
+          "颂"
+        ]
+      },
+      {
+        "component": "隺",
+        "characters": 1,
+        "examples": [
+          "鹤"
+        ]
+      },
+      {
+        "component": "齐",
+        "characters": 1,
+        "examples": [
+          "剂"
+        ]
+      },
+      {
+        "component": "韦",
+        "characters": 1,
+        "examples": [
+          "韧"
+        ]
+      },
+      {
+        "component": "甚",
+        "characters": 1,
+        "examples": [
+          "勘"
+        ]
+      },
+      {
+        "component": "夹",
+        "characters": 1,
+        "examples": [
+          "颊"
+        ]
+      },
+      {
+        "component": "亡",
+        "characters": 1,
+        "examples": [
+          "氓"
+        ]
+      },
+      {
+        "component": "黍",
+        "characters": 1,
+        "examples": [
+          "黏"
+        ]
+      },
+      {
+        "component": "有",
+        "characters": 1,
+        "examples": [
+          "郁"
+        ]
+      },
+      {
+        "component": "区",
+        "characters": 1,
+        "examples": [
+          "殴"
+        ]
+      },
+      {
+        "component": "孛",
+        "characters": 1,
+        "examples": [
+          "勃"
+        ]
+      },
+      {
+        "component": "朋",
+        "characters": 1,
+        "examples": [
+          "鹏"
+        ]
+      },
+      {
+        "component": "皮",
+        "characters": 1,
+        "examples": [
+          "颇"
+        ]
+      },
+      {
+        "component": "册",
+        "characters": 1,
+        "examples": [
+          "删"
+        ]
+      },
+      {
+        "component": "疋",
+        "characters": 1,
+        "examples": [
+          "疏"
+        ]
+      },
+      {
+        "component": "易",
+        "characters": 1,
+        "examples": [
+          "剔"
+        ]
+      },
+      {
+        "component": "弟",
+        "characters": 1,
+        "examples": [
+          "剃"
+        ]
+      },
+      {
+        "component": "午",
+        "characters": 1,
+        "examples": [
+          "卸"
+        ]
+      },
+      {
+        "component": "秃",
+        "characters": 1,
+        "examples": [
+          "颓"
+        ]
+      },
+      {
+        "component": "员",
+        "characters": 1,
+        "examples": [
+          "勋"
+        ]
+      },
+      {
+        "component": "㐆",
+        "characters": 1,
+        "examples": [
+          "殷"
+        ]
+      },
+      {
+        "component": "音",
+        "characters": 1,
+        "examples": [
+          "韵"
+        ]
+      },
+      {
+        "component": "关",
+        "characters": 1,
+        "examples": [
+          "郑"
+        ]
+      },
+      {
+        "component": "刍",
+        "characters": 1,
+        "examples": [
+          "皱"
+        ]
+      },
+      {
+        "component": "爫",
+        "characters": 1,
+        "examples": [
+          "乿"
+        ]
+      },
+      {
+        "component": "仌",
+        "characters": 1,
+        "examples": [
+          "俎"
+        ]
+      },
+      {
+        "component": "旡",
+        "characters": 1,
+        "examples": [
+          "兓"
+        ]
+      },
+      {
+        "component": "先",
+        "characters": 1,
+        "examples": [
+          "兟"
+        ]
+      },
+      {
+        "component": "单",
+        "characters": 1,
+        "examples": [
+          "冁"
+        ]
+      },
+      {
+        "component": "豈",
+        "characters": 1,
+        "examples": [
+          "凱"
+        ]
+      },
+      {
+        "component": "乂",
+        "characters": 1,
+        "examples": [
+          "刈"
+        ]
+      },
+      {
+        "component": "勿",
+        "characters": 1,
+        "examples": [
+          "刎"
+        ]
+      },
+      {
+        "component": "文",
+        "characters": 1,
+        "examples": [
+          "刘"
+        ]
+      },
+      {
+        "component": "冊",
+        "characters": 1,
+        "examples": [
+          "刪"
+        ]
+      },
+      {
+        "component": "会",
+        "characters": 1,
+        "examples": [
+          "刽"
+        ]
+      },
+      {
+        "component": "岁",
+        "characters": 1,
+        "examples": [
+          "刿"
+        ]
+      },
+      {
+        "component": "朵",
+        "characters": 1,
+        "examples": [
+          "剁"
+        ]
+      },
+      {
+        "component": "貝",
+        "characters": 1,
+        "examples": [
+          "則"
+        ]
+      },
+      {
+        "component": "束",
+        "characters": 1,
+        "examples": [
+          "剌"
+        ]
+      },
+      {
+        "component": "呙",
+        "characters": 1,
+        "examples": [
+          "剐"
+        ]
+      },
+      {
+        "component": "岡",
+        "characters": 1,
+        "examples": [
+          "剛"
+        ]
+      },
+      {
+        "component": "宛",
+        "characters": 1,
+        "examples": [
+          "剜"
+        ]
+      },
+      {
+        "component": "彔",
+        "characters": 1,
+        "examples": [
+          "剝"
+        ]
+      },
+      {
+        "component": "奇",
+        "characters": 1,
+        "examples": [
+          "剞"
+        ]
+      },
+      {
+        "component": "炎",
+        "characters": 1,
+        "examples": [
+          "剡"
+        ]
+      },
+      {
+        "component": "咼",
+        "characters": 1,
+        "examples": [
+          "剮"
+        ]
+      },
+      {
+        "component": "荅",
+        "characters": 1,
+        "examples": [
+          "剳"
+        ]
+      },
+      {
+        "component": "倉",
+        "characters": 1,
+        "examples": [
+          "創"
+        ]
+      },
+      {
+        "component": "産",
+        "characters": 1,
+        "examples": [
+          "剷"
+        ]
+      },
+      {
+        "component": "焦",
+        "characters": 1,
+        "examples": [
+          "劁"
+        ]
+      },
+      {
+        "component": "厥",
+        "characters": 1,
+        "examples": [
+          "劂"
+        ]
+      },
+      {
+        "component": "畫",
+        "characters": 1,
+        "examples": [
+          "劃"
+        ]
+      },
+      {
+        "component": "答",
+        "characters": 1,
+        "examples": [
+          "劄"
+        ]
+      },
+      {
+        "component": "豦",
+        "characters": 1,
+        "examples": [
+          "劇"
+        ]
+      },
+      {
+        "component": "卯",
+        "characters": 1,
+        "examples": [
+          "劉"
+        ]
+      },
+      {
+        "component": "會",
+        "characters": 1,
+        "examples": [
+          "劊"
+        ]
+      },
+      {
+        "component": "僉",
+        "characters": 1,
+        "examples": [
+          "劍"
+        ]
+      },
+      {
+        "component": "蒦",
+        "characters": 1,
+        "examples": [
+          "劐"
+        ]
+      },
+      {
+        "component": "齊",
+        "characters": 1,
+        "examples": [
+          "劑"
+        ]
+      },
+      {
+        "component": "万",
+        "characters": 1,
+        "examples": [
+          "劢"
+        ]
+      },
+      {
+        "component": "召",
+        "characters": 1,
+        "examples": [
+          "劭"
+        ]
+      },
+      {
+        "component": "巠",
+        "characters": 1,
+        "examples": [
+          "勁"
+        ]
+      },
+      {
+        "component": "甬",
+        "characters": 1,
+        "examples": [
+          "勈"
+        ]
+      },
+      {
+        "component": "孟",
+        "characters": 1,
+        "examples": [
+          "勐"
+        ]
+      },
+      {
+        "component": "重",
+        "characters": 1,
+        "examples": [
+          "動"
+        ]
+      },
+      {
+        "component": "冒",
+        "characters": 1,
+        "examples": [
+          "勖"
+        ]
+      },
+      {
+        "component": "矛",
+        "characters": 1,
+        "examples": [
+          "務"
+        ]
+      },
+      {
+        "component": "員",
+        "characters": 1,
+        "examples": [
+          "勛"
+        ]
+      },
+      {
+        "component": "劦",
+        "characters": 1,
+        "examples": [
+          "勰"
+        ]
+      },
+      {
+        "component": "熏",
+        "characters": 1,
+        "examples": [
+          "勳"
+        ]
+      },
+      {
+        "component": "厲",
+        "characters": 1,
+        "examples": [
+          "勵"
+        ]
+      },
+      {
+        "component": "雚",
+        "characters": 1,
+        "examples": [
+          "勸"
+        ]
+      },
+      {
+        "component": "启",
+        "characters": 1,
+        "examples": [
+          "啟"
+        ]
+      }
+    ],
+    "overlay": [
+      {
+        "component": "木",
+        "characters": 4,
+        "examples": [
+          "本",
+          "末",
+          "束",
+          "來"
+        ]
+      },
+      {
+        "component": "大",
+        "characters": 3,
+        "examples": [
+          "爽",
+          "夷",
+          "犬"
+        ]
+      },
+      {
+        "component": "丶",
+        "characters": 2,
+        "examples": [
+          "为",
+          "义"
+        ]
+      },
+      {
+        "component": "勹",
+        "characters": 2,
+        "examples": [
+          "夕",
+          "匀"
+        ]
+      },
+      {
+        "component": "了",
+        "characters": 1,
+        "examples": [
+          "子"
+        ]
+      },
+      {
+        "component": "未",
+        "characters": 1,
+        "examples": [
+          "来"
+        ]
+      },
+      {
+        "component": "兀",
+        "characters": 1,
+        "examples": [
+          "西"
+        ]
+      },
+      {
+        "component": "乇",
+        "characters": 1,
+        "examples": [
+          "毛"
+        ]
+      },
+      {
+        "component": "从",
+        "characters": 1,
+        "examples": [
+          "坐"
+        ]
+      },
+      {
+        "component": "亅",
+        "characters": 1,
+        "examples": [
+          "小"
+        ]
+      },
+      {
+        "component": "力",
+        "characters": 1,
+        "examples": [
+          "办"
+        ]
+      },
+      {
+        "component": "心",
+        "characters": 1,
+        "examples": [
+          "必"
+        ]
+      },
+      {
+        "component": "⺀",
+        "characters": 1,
+        "examples": [
+          "头"
+        ]
+      },
+      {
+        "component": "干",
+        "characters": 1,
+        "examples": [
+          "平"
+        ]
+      },
+      {
+        "component": "丁",
+        "characters": 1,
+        "examples": [
+          "可"
+        ]
+      },
+      {
+        "component": "上",
+        "characters": 1,
+        "examples": [
+          "止"
+        ]
+      },
+      {
+        "component": "三",
+        "characters": 1,
+        "examples": [
+          "丰"
+        ]
+      },
+      {
+        "component": "巳",
+        "characters": 1,
+        "examples": [
+          "民"
+        ]
+      },
+      {
+        "component": "尤",
+        "characters": 1,
+        "examples": [
+          "龙"
+        ]
+      },
+      {
+        "component": "日",
+        "characters": 1,
+        "examples": [
+          "申"
+        ]
+      },
+      {
+        "component": "亚",
+        "characters": 1,
+        "examples": [
+          "严"
+        ]
+      },
+      {
+        "component": "夫",
+        "characters": 1,
+        "examples": [
+          "夹"
+        ]
+      },
+      {
+        "component": "山",
+        "characters": 1,
+        "examples": [
+          "幽"
+        ]
+      },
+      {
+        "component": "尢",
+        "characters": 1,
+        "examples": [
+          "尤"
+        ]
+      },
+      {
+        "component": "尚",
+        "characters": 1,
+        "examples": [
+          "党"
+        ]
+      },
+      {
+        "component": "戌",
+        "characters": 1,
+        "examples": [
+          "威"
+        ]
+      },
+      {
+        "component": "勿",
+        "characters": 1,
+        "examples": [
+          "匆"
+        ]
+      },
+      {
+        "component": "九",
+        "characters": 1,
+        "examples": [
+          "丸"
+        ]
+      },
+      {
+        "component": "丈",
+        "characters": 1,
+        "examples": [
+          "吏"
+        ]
+      },
+      {
+        "component": "丨",
+        "characters": 1,
+        "examples": [
+          "卜"
+        ]
+      },
+      {
+        "component": "束",
+        "characters": 1,
+        "examples": [
+          "柬"
+        ]
+      },
+      {
+        "component": "月",
+        "characters": 1,
+        "examples": [
+          "甩"
+        ]
+      },
+      {
+        "component": "工",
+        "characters": 1,
+        "examples": [
+          "巫"
+        ]
+      }
+    ],
+    "surround": [
+      {
+        "component": "尺",
+        "characters": 4,
+        "examples": [
+          "尽",
+          "局",
+          "昼",
+          "咫"
+        ]
+      },
+      {
+        "component": "耂",
+        "characters": 3,
+        "examples": [
+          "考",
+          "者",
+          "孝"
+        ]
+      },
+      {
+        "component": "口",
+        "characters": 3,
+        "examples": [
+          "日",
+          "目",
+          "曰"
+        ]
+      },
+      {
+        "component": "才",
+        "characters": 2,
+        "examples": [
+          "在",
+          "存"
+        ]
+      },
+      {
+        "component": "夂",
+        "characters": 2,
+        "examples": [
+          "处",
+          "処"
+        ]
+      },
+      {
+        "component": "是",
+        "characters": 2,
+        "examples": [
+          "题",
+          "匙"
+        ]
+      },
+      {
+        "component": "冎",
+        "characters": 2,
+        "examples": [
+          "骨",
+          "咼"
+        ]
+      },
+      {
+        "component": "戊",
+        "characters": 2,
+        "examples": [
+          "咸",
+          "戚"
+        ]
+      },
+      {
+        "component": "免",
+        "characters": 2,
+        "examples": [
+          "兔",
+          "勉"
+        ]
+      },
+      {
+        "component": "气",
+        "characters": 2,
+        "examples": [
+          "氛",
+          "氧"
+        ]
+      },
+      {
+        "component": "辰",
+        "characters": 2,
+        "examples": [
+          "辱",
+          "唇"
+        ]
+      },
+      {
+        "component": "鬼",
+        "characters": 2,
+        "examples": [
+          "魁",
+          "魅"
+        ]
+      },
+      {
+        "component": "尢",
+        "characters": 2,
+        "examples": [
+          "尴",
+          "尬"
+        ]
+      },
+      {
+        "component": "夕",
+        "characters": 1,
+        "examples": [
+          "名"
+        ]
+      },
+      {
+        "component": "大",
+        "characters": 1,
+        "examples": [
+          "太"
+        ]
+      },
+      {
+        "component": "凡",
+        "characters": 1,
+        "examples": [
+          "同"
+        ]
+      },
+      {
+        "component": "爪",
+        "characters": 1,
+        "examples": [
+          "爬"
+        ]
+      },
+      {
+        "component": "原",
+        "characters": 1,
+        "examples": [
+          "愿"
+        ]
+      },
+      {
+        "component": "弋",
+        "characters": 1,
+        "examples": [
+          "式"
+        ]
+      },
+      {
+        "component": "木",
+        "characters": 1,
+        "examples": [
+          "术"
+        ]
+      },
+      {
+        "component": "令",
+        "characters": 1,
+        "examples": [
+          "命"
+        ]
+      },
+      {
+        "component": "歹",
+        "characters": 1,
+        "examples": [
+          "死"
+        ]
+      },
+      {
+        "component": "一",
+        "characters": 1,
+        "examples": [
+          "武"
+        ]
+      },
+      {
+        "component": "⺌",
+        "characters": 1,
+        "examples": [
+          "尚"
+        ]
+      },
+      {
+        "component": "哉",
+        "characters": 1,
+        "examples": [
+          "载"
+        ]
+      },
+      {
+        "component": "十",
+        "characters": 1,
+        "examples": [
+          "裁"
+        ]
+      },
+      {
+        "component": "又",
+        "characters": 1,
+        "examples": [
+          "叉"
+        ]
+      },
+      {
+        "component": "丰",
+        "characters": 1,
+        "examples": [
+          "寿"
+        ]
+      },
+      {
+        "component": "鸟",
+        "characters": 1,
+        "examples": [
+          "岛"
+        ]
+      },
+      {
+        "component": "支",
+        "characters": 1,
+        "examples": [
+          "翅"
+        ]
+      },
+      {
+        "component": "毛",
+        "characters": 1,
+        "examples": [
+          "毯"
+        ]
+      },
+      {
+        "component": "朕",
+        "characters": 1,
+        "examples": [
+          "腾"
+        ]
+      },
+      {
+        "component": "卄",
+        "characters": 1,
+        "examples": [
+          "甘"
+        ]
+      },
+      {
+        "component": "尹",
+        "characters": 1,
+        "examples": [
+          "君"
+        ]
+      },
+      {
+        "component": "斤",
+        "characters": 1,
+        "examples": [
+          "斥"
+        ]
+      },
+      {
+        "component": "尧",
+        "characters": 1,
+        "examples": [
+          "翘"
+        ]
+      },
+      {
+        "component": "九",
+        "characters": 1,
+        "examples": [
+          "旭"
+        ]
+      },
+      {
+        "component": "舁",
+        "characters": 1,
+        "examples": [
+          "舆"
+        ]
+      },
+      {
+        "component": "丿",
+        "characters": 1,
+        "examples": [
+          "乍"
+        ]
+      },
+      {
+        "component": "衣",
+        "characters": 1,
+        "examples": [
+          "亵"
+        ]
+      },
+      {
+        "component": "攸",
+        "characters": 1,
+        "examples": [
+          "倏"
+        ]
+      },
+      {
+        "component": "巾",
+        "characters": 1,
+        "examples": [
+          "冘"
+        ]
+      },
+      {
+        "component": "刀",
+        "characters": 1,
+        "examples": [
+          "刃"
+        ]
+      },
+      {
+        "component": "乚",
+        "characters": 1,
+        "examples": [
+          "匕"
+        ]
+      },
+      {
+        "component": "乙",
+        "characters": 1,
+        "examples": [
+          "卂"
+        ]
+      },
+      {
+        "component": "門",
+        "characters": 1,
+        "examples": [
+          "問"
+        ]
+      }
+    ],
+    "threePart": [
+      {
+        "component": "一",
+        "characters": 2,
+        "examples": [
+          "夏",
+          "豆"
+        ]
+      },
+      {
+        "component": "亼",
+        "characters": 2,
+        "examples": [
+          "佥",
+          "僉"
+        ]
+      },
+      {
+        "component": "廾",
+        "characters": 1,
+        "examples": [
+          "共"
+        ]
+      },
+      {
+        "component": "爫",
+        "characters": 1,
+        "examples": [
+          "受"
+        ]
+      },
+      {
+        "component": "十",
+        "characters": 1,
+        "examples": [
+          "直"
+        ]
+      },
+      {
+        "component": "⺈",
+        "characters": 1,
+        "examples": [
+          "象"
+        ]
+      },
+      {
+        "component": "丷",
+        "characters": 1,
+        "examples": [
+          "总"
+        ]
+      },
+      {
+        "component": "丿",
+        "characters": 1,
+        "examples": [
+          "川"
+        ]
+      },
+      {
+        "component": "车",
+        "characters": 1,
+        "examples": [
+          "辙"
+        ]
+      },
+      {
+        "component": "冖",
+        "characters": 1,
+        "examples": [
+          "冥"
+        ]
+      },
+      {
+        "component": "炏",
+        "characters": 1,
+        "examples": [
+          "勞"
+        ]
+      },
+      {
+        "component": "厽",
+        "characters": 1,
+        "examples": [
+          "參"
+        ]
+      }
+    ]
+  }
+}

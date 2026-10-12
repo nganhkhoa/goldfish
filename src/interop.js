@@ -79,6 +79,20 @@ export const onReady = async ({ app }) => {
     catch (error) { console.error('Search failed:', error); send(app.ports.receiveSearchResults, []); }
   });
   app.ports.requestNotebook?.subscribe(reloadNotebook);
+  let characterIndex;
+  app.ports.requestCharacterIndex?.subscribe(async () => {
+    try {
+      if (!characterIndex) {
+        const response = await fetch('/character-index.json');
+        if (!response.ok) throw new Error(`Character index request failed: ${response.status}`);
+        characterIndex = await response.json();
+      }
+      send(app.ports.receiveCharacterIndex, characterIndex);
+    } catch (error) {
+      console.error('Character index failed to load:', error);
+      send(app.ports.receiveCharacterIndex, { count: 0, characters: [], components: {} });
+    }
+  });
   app.ports.scrollToTop?.subscribe(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
   app.ports.requestWordsByLevelNotebook?.subscribe(async ({ lang, level }) => {
     send(app.ports.receiveWordsByLevelNotebook, await getWordsByLevelAsNotebookEntries(lang, level));
