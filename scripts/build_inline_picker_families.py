@@ -28,8 +28,11 @@ for layout, rows in by_layout.items():
         parts = [p for p in raw.split() if p in available and p not in used]
         if parts: result.append((name, parts)); used.update(parts)
     missing = [p for p in available if p not in used]
-    for start in range(0, len(missing), 9):
-        result.append(("More shapes " + str(start // 9 + 1), missing[start:start + 9]))
+    # Do not present arbitrary numbered buckets as if they were meaningful
+    # visual families. One clearly-labelled fallback preserves reachability
+    # without misleading learners about the organization.
+    if missing:
+        result.append(("Other visible components", missing))
     all_families[layout] = result
 
 lines = ['module Components.InlinePickerFamilies exposing (familiesFor)', '', 'familiesFor : String -> List ( String, List String )', 'familiesFor layout =', '    case layout of']

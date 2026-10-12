@@ -40,6 +40,11 @@ layoutGlyph l = case l of
     Overlay -> "⿻"
 groups = [ ( "月", [ "月", "⺼" ] ), ( "水", [ "水", "氵" ] ), ( "手", [ "手", "扌" ] ), ( "心", [ "心", "忄" ] ), ( "言", [ "言", "讠" ] ), ( "人", [ "人", "亻" ] ), ( "金", [ "金", "钅" ] ), ( "辶", [ "辶", "⻌" ] ) ]
 leader x = groups |> List.filter (\(_, xs) -> List.member x xs) |> List.head |> Maybe.map Tuple.first |> Maybe.withDefault x
+variants part = groups |> List.filter (\(leaderPart, _) -> leaderPart == part) |> List.head |> Maybe.map Tuple.second |> Maybe.withDefault [ part ]
+partLabel part =
+    case variants part of
+        [ _ ] -> part
+        xs -> String.join "·" xs
 layoutKey layout = case layout of
     LeftRight -> "leftRight"
     TopBottom -> "topBottom"
@@ -70,11 +75,16 @@ viewFamilies c =
         Just layout ->
             div [ class "inline-family-row" ]
                 (familiesFor (layoutKey layout)
-                    |> List.map (\(name, xs) -> button [ classList [ ( "inline-family", True ), ( "selected", c.family == Just name ) ], onClick (c.chooseFamily name) ] [ strong [] [ text name ], span [] [ text (String.join " " xs) ] ])
+                    |> List.map (\(name, xs) ->
+                        button [ classList [ ( "inline-family", True ), ( "selected", c.family == Just name ), ( "fallback-family", name == "Other visible components" ) ], onClick (c.chooseFamily name) ]
+                            [ strong [] [ text name ]
+                            , if name == "Other visible components" then span [] [ text "Browse uncommon components by visible shape" ] else span [] [ text (String.join " " (List.map partLabel xs)) ]
+                            ]
+                    )
                 )
         Nothing -> p [] [ text "Choose a layout first." ]
 viewParts c = case (c.layout, c.family) of
-    (Just layout, Just f) -> div [ class "inline-choice-row" ] (List.map (\part -> button [ classList [ ( "inline-choice", True ), ( "selected", c.part == Just part ) ], onClick (c.choosePart part) ] [ text part ]) (familyParts layout f))
+    (Just layout, Just f) -> div [ class "inline-choice-row" ] (List.map (\part -> button [ classList [ ( "inline-choice", True ), ( "selected", c.part == Just part ) ], onClick (c.choosePart part) ] [ text (partLabel part) ]) (familyParts layout f))
     (Just layout, _) -> div [ class "inline-choice-row" ] (c.characters |> List.filter (\x -> x.layout == layout) |> List.filterMap (\x -> List.head x.parts) |> List.map leader |> unique |> List.take 18 |> List.map (\part -> button [ class "inline-choice", onClick (c.choosePart part) ] [ text part ]))
     _ -> text ""
 viewCandidates c = case (c.layout, c.part) of

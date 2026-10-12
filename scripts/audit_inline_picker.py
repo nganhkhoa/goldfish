@@ -44,8 +44,9 @@ for layout, chars in by_layout.items():
         members = [x for x in raw.split() if x in available and x not in used]
         if members:
             families.append((name, members)); used.update(members)
-    for i, members in enumerate(chunks([x for x in available if x not in used]), 1):
-        families.append((f"Other shapes {i}", members)); used.update(members)
+    other = [x for x in available if x not in used]
+    if other:
+        families.append(("Other visible components", other)); used.update(other)
     reachable = {x for _, members in families for x in members}
     misses = [c["hanzi"] for c in chars if leader(c["parts"][0]) not in reachable]
     unreachable.extend(misses)
