@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 URL = "https://raw.githubusercontent.com/skishore/makemeahanzi/master/dictionary.txt"
-TARGET_SIZE = 3500
+TARGET_SIZE = 5000
 IDC = set("⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻")
 BINARY = set("⿰⿱⿴⿵⿶⿷⿸⿹⿺⿻")
 TERNARY = set("⿲⿳")
@@ -80,10 +80,13 @@ def main():
         print("Downloading Make Me a Hanzi dictionary data…")
         urllib.request.urlretrieve(URL, cache)
     entries = {}
+    component_strokes = {}
     order = []
     for line in cache.read_text(encoding="utf-8").splitlines():
         entry = json.loads(line)
         char = entry.get("character", "")
+        if char and entry.get("matches"):
+            component_strokes[char] = len(entry["matches"])
         parsed = root_parts(entry.get("decomposition", ""))
         if len(char) != 1 or not ("\u4e00" <= char <= "\u9fff") or not parsed:
             continue
@@ -121,6 +124,7 @@ def main():
         "count": len(records),
         "characters": records,
         "components": components,
+        "componentStrokes": component_strokes,
     }
     target = ROOT / "static/character-index.json"
     target.write_text(json.dumps(output, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
