@@ -83,7 +83,9 @@ export const onReady = async ({ app }) => {
   app.ports.requestCharacterIndex?.subscribe(async () => {
     try {
       if (!characterIndex) {
-        const response = await fetch('/character-index.json');
+        // GitHub Pages serves this app below /goldfish/, while local builds
+        // serve it at /. Resolve beside the current document in either case.
+        const response = await fetch(new URL('character-index.json', window.location.href).pathname);
         if (!response.ok) throw new Error(`Character index request failed: ${response.status}`);
         characterIndex = await response.json();
       }
