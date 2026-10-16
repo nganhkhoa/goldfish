@@ -2,7 +2,7 @@ module Pages.Goldfish exposing (Model, Msg, page)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onClick, onInput)
+import Html.Events exposing (on, onClick, onInput)
 import Dict exposing (Dict)
 
 import Ports
@@ -305,6 +305,7 @@ view model =
                         [ placeholder "Enter vocabulary..."
                         , value model.query
                         , onInput UpdateQuery
+                        , onEnter DoSearch
                         ] []
                     , if model.activeLanguage == Korean then text "" else button [ class "search-character-trigger", onClick ToggleCharacterPicker ] [ text (if model.activeLanguage == Japanese then "漢 Pick kanji" else "拼 Pick character") ]
                     , button [ onClick DoSearch ] [ text "Search" ]
@@ -330,6 +331,20 @@ view model =
             ]
         ]
     }
+
+
+onEnter : Msg -> Html.Attribute Msg
+onEnter msg =
+    on "keydown"
+        (Decode.andThen
+            (\key ->
+                if key == "Enter" then
+                    Decode.succeed msg
+                else
+                    Decode.fail "not Enter"
+            )
+            (Decode.field "key" Decode.string)
+        )
 
 
 viewInlineCharacterPicker : Model -> Html Msg
